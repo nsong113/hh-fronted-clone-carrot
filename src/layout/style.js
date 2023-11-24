@@ -30,6 +30,7 @@ export const HeaderLogo = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   transform: translateY(-3px);
+  cursor: pointer;
 `;
 
 //navbar
@@ -44,6 +45,7 @@ export const NavbarLi = styled.li`
   font-weight: 600;
   font-size: 17px;
   color: #555;
+  cursor: pointer;
 `;
 
 //로그아웃 버튼
@@ -57,6 +59,7 @@ export const HeaderLogoutBtn = styled.div`
   border-radius: 5px;
   font-weight: 600;
   transition: 0.2s;
+  cursor: pointer;
   &:hover {
     background-color: #eee;
   }
@@ -78,6 +81,7 @@ export const HeaderSearchBtn = styled.div`
   justify-content: center;
   font-size: 13px;
   color: #555;
+  cursor: pointer;
 `;
 
 //footer
@@ -115,6 +119,7 @@ export const FooterUpperLeftDiv = styled.div`
 export const FooterLi = styled.li`
   padding: 15px 10px;
   color: #444;
+  cursor: pointer;
 `;
 
 export const FooterUpperRightDiv = styled.div`
@@ -144,6 +149,7 @@ export const FooterAppleBtn = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
+  cursor: pointer;
   &:hover {
     color: #aaa;
   }
