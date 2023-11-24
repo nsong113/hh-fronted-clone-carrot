@@ -1,5 +1,5 @@
 import React from 'react';
-import { HiOutlineArrowLongDown } from 'react-icons/hi2';
+import { IoMdArrowDropdown } from 'react-icons/io';
 import * as St from '../style';
 
 const Singup = () => {
@@ -32,7 +32,10 @@ const Singup = () => {
     top: '50%',
     transform: 'translateY(-50%)',
     zIndex: '-1',
+    color: 'var(--main-color)',
   };
+
+  ////////////////////////////////////////////////////////
 
   return (
     <St.SignupContainerDiv>
@@ -75,7 +78,7 @@ const Singup = () => {
               <St.SignupH6>주소지</St.SignupH6>
               <St.SelectionFlex>
                 <St.SignupSelectContainer>
-                  <select name="si" id="" style={selection}>
+                  <select name="si" style={selection}>
                     <option value="">시</option>
                     <option value="">서울특별시</option>
                     <option value="">경기도</option>
@@ -88,10 +91,10 @@ const Singup = () => {
                     <option value="">전라남도</option>
                     <option value="">제주도</option>
                   </select>
-                  <HiOutlineArrowLongDown style={icon} />
+                  <IoMdArrowDropdown style={icon} />
                 </St.SignupSelectContainer>
                 <St.SignupSelectContainer>
-                  <select name="gu" id="" style={selection}>
+                  <select name="gu" style={selection}>
                     <option value="">구</option>
                     <option value="">강동구</option>
                     <option value="">강북구</option>
@@ -103,11 +106,11 @@ const Singup = () => {
                     <option value="">서대문구</option>
                     <option value="">중구</option>
                   </select>
-                  <HiOutlineArrowLongDown style={icon} />
+                  <IoMdArrowDropdown style={icon} />
                 </St.SignupSelectContainer>
 
                 <St.SignupSelectContainer>
-                  <select name="do" id="" style={selection}>
+                  <select name="do" style={selection}>
                     <option value="">동</option>
                     <option value="">강일동</option>
                     <option value="">고덕동</option>
@@ -117,7 +120,7 @@ const Singup = () => {
                     <option value="">명일동</option>
                     <option value="">천호동</option>
                   </select>
-                  <HiOutlineArrowLongDown style={icon} />
+                  <IoMdArrowDropdown style={icon} />
                 </St.SignupSelectContainer>
               </St.SelectionFlex>
             </St.SignupAddressDiv>
