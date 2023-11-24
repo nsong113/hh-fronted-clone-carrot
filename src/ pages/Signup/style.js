@@ -72,7 +72,7 @@ export const SignupCancelBtn = styled.button`
   margin-top: 10px;
   border-radius: 5px;
   font-size: 13px;
-  background-color: var(--main-color);
+  background-color: ${props => (props.$cancel === 'cancel' ? '#ccc' : '#FF6F0F')};
   color: white;
   outline: none;
   border: none;
