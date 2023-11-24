@@ -9,6 +9,8 @@ export const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  background-color: white;
+  z-index: 100000000;
 `;
 
 export const HeaderBox = styled.div`
@@ -85,6 +87,7 @@ export const FooterContainer = styled.div`
   border-top: #ddd;
   font-weight: 400;
   font-size: 14px;
+  background-color: white;
 `;
 
 export const FooterWrap = styled.div`

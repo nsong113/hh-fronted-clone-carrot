@@ -8,6 +8,10 @@
   font-weight: 400;
 }
 
+:root {
+  --main-color: #FF6F0F;
+}
+
 .App {
   text-align: center;
 }
