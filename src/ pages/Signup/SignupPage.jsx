@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react';
+import Singup from './SignupCom/Singup';
 
 const SignupPage = () => {
-  return <div>SignupPage</div>;
+  return <Singup />;
 };
 
 export default SignupPage;
