@@ -1,4 +1,5 @@
 import React from 'react'
+<<<<<<< HEAD
 
 const MainPage = () => {
   return (
@@ -7,3 +8,13 @@ const MainPage = () => {
 }
 
 export default MainPage
+=======
+import GoodsList from './Goods/GoodsList'
+
+
+const MainPage = () => {
+  return <GoodsList />;
+};
+
+export default MainPage;
+>>>>>>> dev

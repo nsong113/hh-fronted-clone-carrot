@@ -18,7 +18,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/modify" element={<ModifyPage />} />
         <Route path="/mypage" element={<MypagePage />} />
-        <Route path="/detail" element={<DetailPage />} />
+        <Route path="/detail/:goodsId" element={<DetailPage />} />
         <Route path="/write" element={<WritePage />} />
       </Routes>
     </Layout>

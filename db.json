@@ -28,6 +28,42 @@
     "wishLocation" : "서울시 강동구 천호동",
     "likeCount": 3,
     "haveStock": true
+    },
+    {
+    "goodsId": 2,
+    "goodsTitle": "사탕1",
+    "price": 20000,
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+    "wishLocation" : "서울시 강동구 천호동",
+    "likeCount": 8,
+    "haveStock": true
+    },
+    {
+    "goodsId": 3,
+    "goodsTitle": "사탕2",
+    "price": 10500,
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+    "wishLocation" : "서울시 강동구 천호동",
+    "likeCount": 1,
+    "haveStock": true
+    },
+    {
+    "goodsId": 4,
+    "goodsTitle": "사탕3",
+    "price": 7000,
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+    "wishLocation" : "서울시 강동구 천호동",
+    "likeCount": 11,
+    "haveStock": true
+    },
+    {
+    "goodsId": 5,
+    "goodsTitle": "사탕4",
+    "price": 72000,
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+    "wishLocation" : "서울시 강동구 천호동",
+    "likeCount": 7,
+    "haveStock": true
     }
   ],
 
