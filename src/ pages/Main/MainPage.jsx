@@ -1,8 +1,9 @@
 import React from 'react'
+import { StWrap } from './styles'
 
 const MainPage = () => {
   return (
-    <div>MainPage</div>
+    <StWrap>MainPage</StWrap>
   )
 }
 
