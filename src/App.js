@@ -1,13 +1,13 @@
-import "./App.css";
-import { Route, Routes } from "react-router-dom";
-import LoginPage from "./ pages/Login/LoginPage";
-import SignupPage from "./ pages/Signup/SignupPage";
-import MainPage from "./ pages/Main/MainPage";
-import ModifyPage from "./ pages/Modify/ModifyPage";
-import DetailPage from "./ pages/Detail/DetailPage";
-import WritePage from "./ pages/Write/WritePage";
-import MypagePage from "./ pages/MypagePage/MypagePage";
-import Layout from "./layout/Layout";
+import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import LoginPage from './pages/Login/LoginPage';
+import SignupPage from './pages/Signup/SignupPage';
+import MainPage from './pages/Main/MainPage';
+import ModifyPage from './pages/Modify/ModifyPage';
+import DetailPage from './pages/Detail/DetailPage';
+import WritePage from './pages/Write/WritePage';
+import MypagePage from './pages/MypagePage/MypagePage';
+import Layout from './layout/Layout';
 
 function App() {
   return (

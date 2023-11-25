@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { IoMdArrowDropdown } from 'react-icons/io';
-import * as St from '../style';
 import useInputValue from '../../../hooks/useInputValue';
 import { signupPost } from '../../../apis/api/userInfo';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { useNavigate } from 'react-router';
+import * as St from '../style';
+import { signupCheckDuplicationGet } from '../../../apis/api/userInfo';
+import { debounce } from 'lodash';
+import axios from 'axios';
 
 const Singup = () => {
   //인라인스타일링
@@ -52,6 +55,24 @@ const Singup = () => {
   const [gu, onChangeGuHandler] = useInputValue();
   const [dong, onChangeDongHandler] = useInputValue();
 
+  //username 중복검사
+  const onChangeDuplicateHandler = e => {
+    debounceOnChange();
+  };
+
+  const debounceOnChange = debounce(async () => {
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/signup/checkName`, {
+        params: {
+          username: userName,
+        },
+      });
+      console.log(res);
+    } catch (error) {
+      console.log('debounceOnChange error', error);
+    }
+  }, 1500);
+
   //주소 합치기
   const [address, setAddress] = useState('');
   useEffect(() => {
@@ -85,7 +106,6 @@ const Singup = () => {
   return (
     <St.SignupContainerDiv>
       <St.SignupDiv>
-        <St.SignupLogoDiv></St.SignupLogoDiv>
         <St.SignupBoxDiv>
           <form>
             <St.Signup1Div>
@@ -106,12 +126,15 @@ const Singup = () => {
                   placeholder="5 ~ 12자 이내의 영문, 숫자 조합을 입력하세요"
                   style={inputStyle}
                   value={userName}
-                  onChange={onChangeUserNameHandler}
+                  onChange={e => {
+                    onChangeUserNameHandler(e);
+                    onChangeDuplicateHandler(e);
+                  }}
                 />
                 {/* <div>중복 확인</div> */}
               </div>
               {5 <= userName.length && userName.length <= 12 && /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/.test(userName) ? (
-                <p></p>
+                <p style={{ color: 'transparent', userSelect: 'none' }}>.</p>
               ) : (
                 <St.SignupErrorMsgP>5 ~ 12자 이내의 영문, 숫자 조합을 입력하세요</St.SignupErrorMsgP>
               )}
@@ -128,7 +151,7 @@ const Singup = () => {
                 onChange={onChangePasswordHandler}
               />
               {5 <= password.length && password.length <= 12 ? (
-                <p></p>
+                <p style={{ color: 'transparent', userSelect: 'none' }}>.</p>
               ) : (
                 <St.SignupErrorMsgP>비밀번호는 5~12자 이내로 입력하세요</St.SignupErrorMsgP>
               )}
@@ -161,7 +184,7 @@ const Singup = () => {
               {email.length !== 0 && !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email) ? (
                 <St.SignupErrorMsgP>이메일 형식이 올바르지 않습니다.</St.SignupErrorMsgP>
               ) : (
-                <p></p>
+                <p style={{ color: 'transparent', userSelect: 'none' }}>.</p>
               )}
             </St.Signup1Div>
             <St.Signup1Div>
@@ -176,7 +199,7 @@ const Singup = () => {
               {!/^[0-9]{3}-[0-9]{4}-[0-9]{4}$/.test(phoneNum) ? (
                 <St.SignupErrorMsgP>010-1234-5678형식으로 입력해주세요</St.SignupErrorMsgP>
               ) : (
-                <p></p>
+                <p style={{ color: 'transparent', userSelect: 'none' }}>.</p>
               )}
             </St.Signup1Div>
             <St.SignupAddressDiv>
