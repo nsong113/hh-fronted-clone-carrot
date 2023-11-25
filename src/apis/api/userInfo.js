@@ -1,12 +1,8 @@
 import axios from 'axios';
-import React from 'react';
 
 const signupPost = async newUser => {
   try {
-    const res = await axios.post(
-      `https://port-0-hangdang-back-3szcb0g2blp9q5y23.sel5.cloudtype.app/api/signup`,
-      newUser,
-    );
+    const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}`, newUser);
 
     console.log(res);
   } catch (error) {
@@ -16,10 +12,7 @@ const signupPost = async newUser => {
 
 const loginPost = async loginUser => {
   try {
-    const res = await axios.post(
-      `https://port-0-hangdang-back-3szcb0g2blp9q5y23.sel5.cloudtype.app/api/signup`,
-      loginUser,
-    );
+    const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}`, loginUser);
   } catch (error) {
     console.log('loginPost error', error);
   }

@@ -142,7 +142,7 @@ const Singup = () => {
                 value={confirmPassword}
                 onChange={onChangeConfirmPasswordHandler}
               />
-              {password !== confirmPassword ? (
+              {!confirmPassword || password !== confirmPassword ? (
                 <St.SignupErrorMsgP>비밀번호가 일치하지 않습니다.</St.SignupErrorMsgP>
               ) : (
                 <St.SignupErrorMsgP>비밀번호가 일치합니다.</St.SignupErrorMsgP>
