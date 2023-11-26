@@ -5,6 +5,7 @@ import useInputValue from '../../../hooks/useInputValue';
 import { useMutation } from 'react-query';
 import { addGoods } from '../../../apis/api/goods';
 import { useNavigate } from 'react-router-dom';
+import { nanoid } from 'nanoid';
 
 
 const GoodsInput = ({WriteGoodsTitle}) => {
@@ -22,21 +23,21 @@ const GoodsInput = ({WriteGoodsTitle}) => {
     backgroundColor: 'transparent',
   };
 
-  const icon = {
-    position: 'absolute',
-    right: '10px',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    zIndex: '-1',
-    color: 'var(--main-color)',
-  };
+  // const icon = {
+  //   position: 'absolute',
+  //   right: '10px',
+  //   top: '50%',
+  //   transform: 'translateY(-50%)',
+  //   zIndex: '-1',
+  //   color: 'var(--main-color)',
+  // };
 
-  const [goodsTitle, onChangeGoodsTitleHandler] = useInputValue();
-  const [price, onChangePriceHandler] = useInputValue();
-  const [contents, onChangeContentsHandler] = useInputValue();
-  const [si, onChangeSiHandler] = useInputValue();
-  const [gu, onChangeGuHandler] = useInputValue();
-  const [dong, onChangeDongHandler] = useInputValue();
+  const [goodsTitle, setGoodsTitle] = useState('');
+  const [price, setPrice] = useState('');
+  const [content, setContent] = useState('');
+  const [si, setSi] = useState('');
+  const [gu, setGu] = useState('');
+  const [dong, setDong] = useState('');
 
   // 주소 합치기
   const [wishLocation, setWishLocation] = useState('');
@@ -47,27 +48,32 @@ const GoodsInput = ({WriteGoodsTitle}) => {
   const addGmutation = useMutation(addGoods,{
     onSuccess: () => {
       alert('상품이 추가되었습니다.');
-      // queryClient.invalidateQueries("Goods");
-    },
+      navigate('/');
+    }, onError: (error) => {
+      console.error('Error adding goods:', error);
+      alert('상품이 추가되지 않았습니다.');
+    }
   });
 
-    const onClickAddHandler = e => {
-    //추가할 상품 정보
+  // 새 상품 추가 (추후 유효성 검사 넣기 - 빈칸 !!!!!)
+  const onClickAddHandler = () => {
+    //추가할 새 상품
     const newGoods = {
+      // goodsId: nanoid(10),
       goodsTitle,
       price,
-      contents,
-      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+      content,
+      imageUrl: "",
       wishLocation,
-      likeCount: Math.floor(Math.random()),
+      likeCount: Math.floor(Math.random() * 10),
       haveStock: true
       };
     addGmutation.mutate(newGoods);
     console.log(newGoods);
-    };
+  };
 
   //취소버튼
-  const onClickCancelHandler = e => {
+  const onClickCancelHandler = () => {
     navigate('/');
   };
 
@@ -76,12 +82,12 @@ const GoodsInput = ({WriteGoodsTitle}) => {
       <St.GoodsTitleP>{WriteGoodsTitle}</St.GoodsTitleP>
       <St.InputConfirmdiv>
         <St.InputBackSpan onClick={onClickCancelHandler}>취소</St.InputBackSpan>
-        <St.InputCompleteSpan onClick={onClickAddHandler}>완료</St.InputCompleteSpan>
+        <St.InputCompleteSpan type="submit" onClick={onClickAddHandler}>완료</St.InputCompleteSpan>
       </St.InputConfirmdiv>
       <St.InputImgBtn>이미지 등록</St.InputImgBtn>
-      <St.InputGoodsTitle placeholder='상품명' value={goodsTitle} onChange={onChangeGoodsTitleHandler}/>
-      <St.InputGoodsPrice placeholder='가격' value={price} type="number" onChange={onChangePriceHandler}/>
-      <St.InputGoodsContents  value={contents} onChange={onChangeContentsHandler}
+      <St.InputGoodsTitle placeholder='상품명' value={goodsTitle} onChange={e => setGoodsTitle(e.target.value)}/>
+      <St.InputGoodsPrice placeholder='가격' value={price} type="number" onChange={e => setPrice(e.target.value)}/>
+      <St.InputGoodsContents  value={content} onChange={e => setContent(e.target.value)}
         placeholder='상품 설명을 입력해주세요. 
         구매 시기, 모델명, 제품의 상태 (사용감, 하자 유무 등) 
         * SNS계정, 전화번호 등 개인정보는 입력하지 않도록 주의해주세요.
@@ -89,12 +95,12 @@ const GoodsInput = ({WriteGoodsTitle}) => {
       <St.SelectionFlex>
       <St.InputLocationLabel>거래 희망 장소</St.InputLocationLabel>
         <St.InputSelectContainer>
-          <select name="si" style={selection} value={si} onChange={onChangeSiHandler}>
+          <select name="si" style={selection} value={si} onChange={e => setSi(e.target.value)}>
             <option value="">시</option>
             <option value="서울시">서울시</option>
             <option value="경기도">경기도</option>
             <option value="강원도">강원도</option>
-            <option value="충청도">충청도</option>
+            <option value="충청도">충청도</option> 
             <option value="경상도">경상도</option>
             <option value="전라도">전라도</option>
             <option value="제주도">제주도</option>
@@ -103,7 +109,7 @@ const GoodsInput = ({WriteGoodsTitle}) => {
         </St.InputSelectContainer>
 
         <St.InputSelectContainer>
-          <select name="gu" style={selection} value={gu} onChange={onChangeGuHandler}>
+          <select name="gu" style={selection} value={gu} onChange={e => setGu(e.target.value)}>
             <option value="">구</option>
             <option value="강동구">강동구</option>
             <option value="강북구">강북구</option>
@@ -116,7 +122,7 @@ const GoodsInput = ({WriteGoodsTitle}) => {
         </St.InputSelectContainer>
 
         <St.InputSelectContainer>
-          <select name="do" style={selection} value={dong} onChange={onChangeDongHandler}>
+          <select name="do" style={selection} value={dong} onChange={e => setDong(e.target.value)}>
             <option value="">동</option>
             <option value="강일동">강일동</option>
             <option value="고덕동">고덕동</option>

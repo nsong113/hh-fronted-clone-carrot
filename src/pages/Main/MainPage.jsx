@@ -1,6 +1,5 @@
-import React from 'react'
-import GoodsList from './Goods/GoodsList'
-
+import React from 'react';
+import GoodsList from './Goods/GoodsList';
 
 const MainPage = () => {
   return <GoodsList />;

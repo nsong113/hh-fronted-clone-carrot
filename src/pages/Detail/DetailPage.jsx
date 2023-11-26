@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import SellItem from './detailCom/SellItem';
+import SellList from './detailCom/SellList';
 
 const DetailPage = () => {
   return (
-    <div>DetailPage</div>
-  )
-}
+    <>
+      <SellItem />
+      <SellList />
+    </>
+  );
+};
 
-export default DetailPage
+export default DetailPage;
