@@ -131,7 +131,7 @@ export const SellItemTempFaceDiv = styled.div`
 
 export const SellItemContentDiv = styled.div`
   width: 100%;
-  min-height: 230px;
+  /* min-height: 230px; */
   height: auto;
   padding-bottom: 20px;
   border-bottom: 1px solid #ddd;
@@ -147,10 +147,26 @@ export const SellItemDivFlex = styled.div`
   justify-content: space-between;
 `;
 
+export const SellItemCommentModify = styled.div`
+  width: 100px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ddd;
+`;
+
+export const CommentAddCommentDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 export const SellItemContentTitleH2 = styled.h2`
   font-size: 20px;
   font-weight: 500;
   line-height: 1.5;
+  margin-bottom: 20px;
 `;
 
 export const SellItemModifyBox = styled.div`
@@ -223,16 +239,21 @@ export const SellListItemsBoxDiv = styled.div`
   min-height: 350px;
   height: auto;
   cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  flex-direction: row;
+  gap: 2.5%;
 `;
 
 export const SellListItem = styled.div`
-  width: calc(33% - 16px);
+  width: calc(33% - 10px);
   height: 330px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 16px;
   margin-bottom: 56px;
+  flex: 0 0 auto;
 `;
 
 export const SellListImgDiv = styled.div`
@@ -278,4 +299,24 @@ export const SellListFlexDiv = styled.div`
 export const SellListLikeDiv = styled.div`
   color: #868e96;
   font-size: 13px;
+`;
+
+///// comment style
+export const CommentDiv = styled.div`
+  border: 1px solid #ddd;
+  margin-top: 5px;
+  padding: 5px;
+`;
+
+export const CommentModifyBoxDiv = styled.div`
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const CommentInfoDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;

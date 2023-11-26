@@ -6,5 +6,4 @@ const getGoods = async () => {
   return response.data;
 };
 
-
-export { getGoods,  };
+export { getGoods };

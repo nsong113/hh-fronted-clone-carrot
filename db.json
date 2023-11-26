@@ -67,9 +67,9 @@
     }
   ],
 
-  "detail":[
+  "comments":[
     {
-        "goodsId": 1,
+        "id": 1,
         "goodsTitle": "사탕",
         "price": 10000,
         "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
