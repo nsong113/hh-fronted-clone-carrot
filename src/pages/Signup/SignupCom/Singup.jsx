@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import useInputValue from '../../../hooks/useInputValue';
 import { signupPost } from '../../../apis/api/userInfo';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router';
 import * as St from '../style';
 import { signupCheckDuplicationGet } from '../../../apis/api/userInfo';
