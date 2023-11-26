@@ -10,7 +10,7 @@ export const SignupContainerDiv = styled.div`
 `;
 
 export const SignupDiv = styled.div`
-  width: 400px
+  width: 400px;
   height: 700px;
   border-radius: 10px;
   padding: 20px;
