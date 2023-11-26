@@ -8,7 +8,7 @@ const Navbar = () => {
     navigate('/');
   };
   const onClickGotoWriteHandler = () => {
-    navigate('/write"');
+    navigate('/write');
   };
   const onClickGotoMypageHandler = () => {
     navigate('/mypage');
