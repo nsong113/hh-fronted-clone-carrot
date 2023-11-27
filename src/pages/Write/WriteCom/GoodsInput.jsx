@@ -11,35 +11,7 @@ import { nanoid } from 'nanoid';
 
 const GoodsInput = ({WriteGoodsTitle}) => {
   const navigate = useNavigate();
-  // 인라인 스타일==========
-  const selection = {
-    width: '120px',
-    height: '30px',
-    appearance: 'none',
-    outline: 'none',
-    border: '1px solid #ddd',
-    borderRadius: '5px',
-    fontSize: '13px',
-    padding: '5px 10px',
-    backgroundColor: 'transparent',
-  };
-
-  const imgIcon = {
-    width: '50px',
-    height: '50px',
-    display: 'block',
-    margin: '0 auto',
-    color: '#bbb',
-  }
-  const icon = {
-    position: 'absolute',
-    right: '10px',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    zIndex: '-1',
-    color: 'var(--main-color)',
-  };
-  // ====================
+  
 
   // 상품 추가 (완료버튼)
   const onClickAddHandler = () => {
@@ -105,6 +77,7 @@ const GoodsInput = ({WriteGoodsTitle}) => {
         <St.InputCompleteSpan onClick={onClickAddHandler}>완료</St.InputCompleteSpan>
       </St.InputConfirmdiv>
       <form>
+        {/* 아이디, htmlfor */}
         <St.InputImgLabel>
           <MdAddPhotoAlternate style={imgIcon}/>
           <St.InputImgP>이미지 등록</St.InputImgP>
@@ -112,7 +85,7 @@ const GoodsInput = ({WriteGoodsTitle}) => {
         <input type="file" accept="image/*" style={{display: 'none'}} onChange={onChangeImg}/>
       </form>
       <St.InputGoodsTitle placeholder='상품명' value={goodsTitle} onChange={onChangeGoodsTitleHandler}/>
-      <St.InputGoodsPrice placeholder='가격' value={price} type="number" onChange={onChangePriceHandler}/>
+      <St.InputGoodsPrice placeholder='가격' value={price} type="text" onChange={onChangePriceHandler}/>
       <St.InputGoodsContents  value={contents} onChange={onChangeContentsHandler}
         placeholder='상품 설명을 입력해주세요. 
         구매 시기, 모델명, 제품의 상태 (사용감, 하자 유무 등) 
@@ -166,3 +139,35 @@ const GoodsInput = ({WriteGoodsTitle}) => {
 }
 
 export default GoodsInput
+
+
+// 인라인 스타일==========
+const selection = {
+  width: '120px',
+  height: '30px',
+  appearance: 'none',
+  outline: 'none',
+  border: '1px solid #ddd',
+  borderRadius: '5px',
+  fontSize: '13px',
+  padding: '5px 10px',
+  backgroundColor: 'transparent',
+};
+
+const imgIcon = {
+  width: '50px',
+  height: '50px',
+  display: 'block',
+  margin: '0 auto',
+  color: '#bbb',
+}
+
+const icon = {
+  position: 'absolute',
+  right: '10px',
+  top: '50%',
+  transform: 'translateY(-50%)',
+  zIndex: '-1',
+  color: 'var(--main-color)',
+};
+// ====================
