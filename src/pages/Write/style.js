@@ -11,6 +11,8 @@ export const GoodsContainerDiv = styled.div`
 `;
 
 export const GoodsTitleP = styled.p`
+  font-size: 20px;
+  font-weight: bold;
   margin: 0 auto 30px;
 `
 
@@ -33,7 +35,7 @@ export const InputCompleteSpan = styled.span`
   color: var(--main-color);
 `
 
-export const InputImgBtn = styled.button`
+export const InputImgLabel = styled.div`
   padding: 20px;
   margin: 20px;
   background-color: white;
@@ -85,5 +87,6 @@ export const SelectionFlex = styled.div`
 export const InputSelectContainer = styled.div`
   height: 30px;
   background-color: transparent;
+  position: relative;
   outline: none;
 `

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import * as St from '../style';
-// import { Ionicons } from '@expo/vector-icons';
+import { MdAddPhotoAlternate } from "react-icons/md";
+import { IoMdArrowDropdown } from "react-icons/io";
 import useInputValue from '../../../hooks/useInputValue';
 import { useMutation } from 'react-query';
 import { addGoods } from '../../../apis/api/goods';
@@ -10,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 const GoodsInput = ({WriteGoodsTitle}) => {
   const navigate = useNavigate();
 
+  // 인라인 스타일==========
   const selection = {
     width: '120px',
     height: '30px',
@@ -22,6 +24,12 @@ const GoodsInput = ({WriteGoodsTitle}) => {
     backgroundColor: 'transparent',
   };
 
+  const imgIcon = {
+    width: '50px',
+    height: '50px',
+    margin: '0 auto',
+    color: '#bbb',
+  }
   const icon = {
     position: 'absolute',
     right: '10px',
@@ -30,7 +38,29 @@ const GoodsInput = ({WriteGoodsTitle}) => {
     zIndex: '-1',
     color: 'var(--main-color)',
   };
+  // ====================
 
+  // 상품 추가 (완료버튼)
+  const onClickAddHandler = () => {
+    const newGoods = {
+      goodsTitle,
+      price,
+      contents,
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+      wishLocation,
+      likeCount: Math.floor(Math.random()),
+      haveStock: true
+      };
+    addGmutation.mutate(newGoods);
+    console.log(newGoods);
+    };
+
+  // 메인으로 (취소버튼)
+  const onClickCancelHandler = () => {
+    navigate('/');
+  };
+
+  const [imgFile,setImgFile] = useState()
   const [goodsTitle, onChangeGoodsTitleHandler] = useInputValue();
   const [price, onChangePriceHandler] = useInputValue();
   const [contents, onChangeContentsHandler] = useInputValue();
@@ -47,29 +77,24 @@ const GoodsInput = ({WriteGoodsTitle}) => {
   const addGmutation = useMutation(addGoods,{
     onSuccess: () => {
       alert('상품이 추가되었습니다.');
-      // queryClient.invalidateQueries("Goods");
+      navigate('/');
     },
   });
 
-    const onClickAddHandler = e => {
-    //추가할 상품 정보
-    const newGoods = {
-      goodsTitle,
-      price,
-      contents,
-      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
-      wishLocation,
-      likeCount: Math.floor(Math.random()),
-      haveStock: true
-      };
-    addGmutation.mutate(newGoods);
-    console.log(newGoods);
-    };
-
-  //취소버튼
-  const onClickCancelHandler = e => {
-    navigate('/');
+  const onChangeImg = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    
+    if(e.target.files){
+      const uploadFile = e.target.files[0]
+      formData.append('file',uploadFile)
+      setImgFile(uploadFile)
+      console.log(uploadFile)
+      console.log('===useState===')
+      console.log(imgFile)
+    }
   };
+
 
   return (
     <St.GoodsContainerDiv>
@@ -78,7 +103,13 @@ const GoodsInput = ({WriteGoodsTitle}) => {
         <St.InputBackSpan onClick={onClickCancelHandler}>취소</St.InputBackSpan>
         <St.InputCompleteSpan onClick={onClickAddHandler}>완료</St.InputCompleteSpan>
       </St.InputConfirmdiv>
-      <St.InputImgBtn>이미지 등록</St.InputImgBtn>
+      <form>
+        <St.InputImgLabel>
+          <MdAddPhotoAlternate style={imgIcon}/>
+          <p>이미지 등록</p>
+        </St.InputImgLabel>
+        <input type="file" accept="image/*" style={{display: 'none'}} onChange={onChangeImg}/>
+      </form>
       <St.InputGoodsTitle placeholder='상품명' value={goodsTitle} onChange={onChangeGoodsTitleHandler}/>
       <St.InputGoodsPrice placeholder='가격' value={price} type="number" onChange={onChangePriceHandler}/>
       <St.InputGoodsContents  value={contents} onChange={onChangeContentsHandler}
@@ -99,7 +130,7 @@ const GoodsInput = ({WriteGoodsTitle}) => {
             <option value="전라도">전라도</option>
             <option value="제주도">제주도</option>
           </select>
-          {/* <IoMdArrowDropdown style={icon} /> */}
+          <IoMdArrowDropdown style={icon} />
         </St.InputSelectContainer>
 
         <St.InputSelectContainer>
@@ -112,7 +143,7 @@ const GoodsInput = ({WriteGoodsTitle}) => {
             <option value="도봉구">도봉구</option>
             <option value="마포구">마포구</option>
           </select>
-          {/* <IoMdArrowDropdown style={icon} /> */}
+          <IoMdArrowDropdown style={icon} />
         </St.InputSelectContainer>
 
         <St.InputSelectContainer>
@@ -126,7 +157,7 @@ const GoodsInput = ({WriteGoodsTitle}) => {
             <option value="명일동">명일동</option>
             <option value="천호동">천호동</option>
           </select>
-          {/* <IoMdArrowDropdown style={icon} /> */}
+          <IoMdArrowDropdown style={icon} />
         </St.InputSelectContainer>
       </St.SelectionFlex>
     </St.GoodsContainerDiv>

@@ -1,8 +1,17 @@
 import { styled } from 'styled-components';
 
+export const CarouselContainerDiv = styled.div`
+  margin: 120px auto 0;
+`
+
+export const CarouselBoxDiv = styled.div`
+  width: 100%;
+  height: 400px;
+`
+
 export const GoodsContainerDiv = styled.div`
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 150px auto 0;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -11,7 +20,7 @@ export const GoodsContainerDiv = styled.div`
 export const GoodsMainH2 = styled.h2`
   font-size: 26px;
   font-weight: bold;
-  margin: 150px 0 60px;
+  margin-bottom: 60px;
 `
 
 export const LocatonBoxP = styled.p`

@@ -1,9 +1,15 @@
 import React from 'react'
-import GoodsList from './Goods/GoodsList'
+import GoodsList from './MainCom/GoodsList'
+import Carousel from './MainCom/MainCarousel';
 
 
 const MainPage = () => {
-  return <GoodsList />;
+  return (
+  <>
+    <Carousel />
+    <GoodsList />
+  </>
+  );
 };
 
 

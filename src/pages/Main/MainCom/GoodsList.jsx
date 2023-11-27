@@ -12,8 +12,8 @@ const GoodsList = () => {
   if (isError) return <div>상품 목록을 불러오는데 에러가 발생</div>;
 
   // [상세보기]를 선택하는 경우 이동하는 함수
-  const DetailLinkHandler = () => {
-    navigate(`/detail/${data.goodsId}`);
+  const DetailLinkHandler = id => {
+    navigate(`/detail/${id}`);
   };
 
   return (
@@ -26,7 +26,7 @@ const GoodsList = () => {
       <St.GoodsListDiv>
         {data?.map(item => {
           return (
-            <St.GoodsBoxDiv key={item.goodsId} onClick={DetailLinkHandler}>
+            <St.GoodsBoxDiv key={item.id} onClick={() => DetailLinkHandler(item.id)}>
               <St.GoodsImgDiv>
                 상품이미지
                 <img src={item.goodsImg} />
