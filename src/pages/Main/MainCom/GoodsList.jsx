@@ -11,9 +11,9 @@ const GoodsList = () => {
   if (isLoading) return <div>상품 목록 로딩중</div>;
   if (isError) return <div>상품 목록을 불러오는데 에러가 발생</div>;
 
-  // [상세보기]를 선택하는 경우 이동하는 함수
+
   const DetailLinkHandler = id => {
-    navigate(`/detail/${id}`);
+    navigate(`/detail/${id}`); // [상세보기]를 선택하는 경우 이동하는 함수
   };
 
   return (

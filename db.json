@@ -90,6 +90,30 @@
           "comment": "댓글입니다."
         }
       ]
+    },
+    {
+      "id": 2,
+      "goodsTitle": "사탕2",
+      "price": 10000,
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+      "wishLocation": "서울시 강동구 천호동",
+      "likeCount": 3,
+      "haveStock": true,
+      "comments": [
+        {
+          "commentId": 1,
+          "comment": "댓글입니다."
+        },
+        {
+          "commentId": 2,
+          "comment": "댓글입니다."
+        },
+        {
+          "commentId": 3,
+          "comment": "댓글입니다."
+        }
+      ]
     }
+ 
   ]
 }
