@@ -5,12 +5,14 @@ import { useQuery } from 'react-query';
 
 const SellList = () => {
   const { data: items, isSuccess } = useQuery('getGoods', getGoods);
+  console.log(items);
+  console.log('isSuccess', isSuccess);
   return (
     <St.SellListContainerDiv>
       <St.SellListAllP>당근 인기중고</St.SellListAllP>
       <St.SellListItemsBoxDiv>
         {isSuccess &&
-          items.map(i => {
+          items?.map(i => {
             return (
               <St.SellListItem key={i.id}>
                 <div>

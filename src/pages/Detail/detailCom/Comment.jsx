@@ -74,12 +74,21 @@ const Comment = () => {
                 </St.SellItemCommentModify>
               </St.SellItemDivFlex>
 
-              <EachComment
+              <St.CommentDiv>
+                {isSuccess &&
+                  currentComments?.map(item => {
+                    console.log(typeof item.commentId);
+                    console.log(typeof editCommentId);
+                    return <EachComment item={item} />;
+                  })}
+              </St.CommentDiv>
+
+              {/* <EachComment
                 isSuccess={isSuccess}
                 currentComments={currentComments}
                 commentModify={commentModify}
                 onChangeCommentModifyHandler={onChangeCommentModifyHandler}
-              ></EachComment>
+              ></EachComment> */}
             </>
           )}
         </St.SellItemContentInfoDiv>

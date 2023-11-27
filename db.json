@@ -83,6 +83,26 @@
       "likeCount": 0,
       "haveStock": true,
       "id": 6
+    },
+    {
+      "goodsTitle": "sdaf",
+      "price": "12321",
+      "contents": "sdafsda",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+      "wishLocation": "  ",
+      "likeCount": 0,
+      "haveStock": true,
+      "id": 7
+    },
+    {
+      "goodsTitle": "fwef",
+      "price": "3232",
+      "contents": "sdf",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+      "wishLocation": "경기도 강동구 고덕동",
+      "likeCount": 0,
+      "haveStock": true,
+      "id": 8
     }
   ],
   "comments": [
