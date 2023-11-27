@@ -6,11 +6,11 @@ import useInputValue from '../../../hooks/useInputValue';
 import { useMutation } from 'react-query';
 import { addGoods } from '../../../apis/api/goods';
 import { useNavigate } from 'react-router-dom';
+import { nanoid } from 'nanoid';
 
 
 const GoodsInput = ({WriteGoodsTitle}) => {
   const navigate = useNavigate();
-
   // 인라인 스타일==========
   const selection = {
     width: '120px',
@@ -68,6 +68,7 @@ const GoodsInput = ({WriteGoodsTitle}) => {
   const [gu, onChangeGuHandler] = useInputValue();
   const [dong, onChangeDongHandler] = useInputValue();
 
+
   // 주소 합치기
   const [wishLocation, setWishLocation] = useState('');
   useEffect(() => {
@@ -94,7 +95,6 @@ const GoodsInput = ({WriteGoodsTitle}) => {
       console.log(imgFile)
     }
   };
-
 
   return (
     <St.GoodsContainerDiv>
