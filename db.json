@@ -1,105 +1,87 @@
 {
-  "mypage": [
+  "mypage":[
     {
-      "id": 1,
-      "nickname": "kiki",
-      "phoneNumber": "010-9822-1560",
-      "address": "서울시 강동구 천호동",
-      "likeList": [
-        {
-          "goodsId": 1,
-          "goodsTitle": "사탕",
-          "price": 3000,
-          "imagUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU"
-        }
-      ],
-      "sellList": [
-        {
-          "goodsId": 2,
-          "goodsTitle": "노트북",
-          "price": 20000,
-          "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxgdPTwXd5aXoZ6pVrHVkbJK9T2CZmPvuKmw&usqp=CAU"
-        }
-      ]
+    "id" : 1,
+    "nickname" : "kiki", 
+    "phoneNumber" : "010-9822-1560",
+    "address" : "서울시 강동구 천호동",
+    "likeList" :[{
+        "goodsId":1, 
+        "goodsTitle" : "사탕", 
+        "price":  3000, 
+        "imagUrl" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU"
+    }],
+    "sellList" :[{
+        "goodsId":2, 
+        "goodsTitle": "노트북",
+        "price" : 20000, 
+        "imageUrl" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxgdPTwXd5aXoZ6pVrHVkbJK9T2CZmPvuKmw&usqp=CAU"
+    }]
     }
   ],
-  "goods": [
+  "goods":[
     {
-      "id": 1,
-      "goodsTitle": "사탕",
-      "price": 10000,
-      "content": "달콤한 사탕 급매",
-      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
-      "wishLocation": "서울시 강동구 천호동",
-      "likeCount": 3,
-      "haveStock": true
+    "goodsId": 1,
+    "goodsTitle": "사탕",
+    "price": 10000,
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+    "wishLocation" : "서울시 강동구 천호동",
+    "likeCount": 3,
+    "haveStock": true
     },
     {
-      "id": 2,
-      "goodsTitle": "사탕1",
-      "price": 20000,
-      "content": "달콤한 사탕",
-      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
-      "wishLocation": "서울시 강동구 천호동",
-      "likeCount": 8,
-      "haveStock": true
+    "goodsId": 2,
+    "goodsTitle": "사탕1",
+    "price": 20000,
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+    "wishLocation" : "서울시 강동구 천호동",
+    "likeCount": 8,
+    "haveStock": true
     },
     {
-      "id": 3,
-      "goodsTitle": "사탕2",
-      "price": 10500,
-      "content": "최저가 달콤한 사탕",
-      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
-      "wishLocation": "서울시 강동구 천호동",
-      "likeCount": 1,
-      "haveStock": true
+    "goodsId": 3,
+    "goodsTitle": "사탕2",
+    "price": 10500,
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+    "wishLocation" : "서울시 강동구 천호동",
+    "likeCount": 1,
+    "haveStock": true
     },
     {
-      "id": 4,
-      "goodsTitle": "마법 사탕3",
-      "price": 7000,
-      "content": "해리포터 마법 사탕",
-      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
-      "wishLocation": "서울시 강동구 천호동",
-      "likeCount": 11,
-      "haveStock": true
+    "goodsId": 4,
+    "goodsTitle": "사탕3",
+    "price": 7000,
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+    "wishLocation" : "서울시 강동구 천호동",
+    "likeCount": 11,
+    "haveStock": true
     },
     {
-      "id": 5,
-      "goodsTitle": "사탕4",
-      "price": 72000,
-      "content": "에눌가능 달콤한 사탕",
-      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
-      "wishLocation": "서울시 강동구 천호동",
-      "likeCount": 7,
-      "haveStock": true
-    },
-    {
-      "goodsTitle": "감자",
-      "price": "2000",
-      "content": "이런 감자 머거봤나",
-      "imageUrl": "",
-      "wishLocation": "  ",
-      "likeCount": 2,
-      "haveStock": true,
-      "id": 6
+    "goodsId": 5,
+    "goodsTitle": "사탕4",
+    "price": 72000,
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+    "wishLocation" : "서울시 강동구 천호동",
+    "likeCount": 7,
+    "haveStock": true
     }
   ],
-  "detail": [
+
+  "comments":[
     {
-      "goodsId": 1,
-      "goodsTitle": "사탕",
-      "price": 10000,
-      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
-      "wishLocation": "서울시 강동구 천호동",
-      "likeCount": 3,
-      "haveStock": true,
-      "comments": [
+        "id": 1,
+        "goodsTitle": "사탕",
+        "price": 10000,
+        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+        "wishLocation" : "서울시 강동구 천호동",
+        "likeCount": 3,
+        "haveStock": true,
+        "comments": [
         {
-          "commentId": 4,
-          "comment": "댓글입니다."
+            "commentId" : 4, 
+            "comment": "댓글입니다."
         }
-      ]
+        ]
     }
   ]
 }
