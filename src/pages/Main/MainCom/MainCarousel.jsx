@@ -35,7 +35,7 @@ const MainCarousel = () => {
         ))}
       </Carousel>
       엑박. 뜨는. 이유. 찾기. 아니면. 캐러셀. 바꾸기.
-      <img src="./assets/hDaangnMainImg5.png" alt="MainSlideImg" />
+      <img src="/src/pages/Main/hDaangnMainImg6.png" alt="MainSlideImg" />
     </St.CarouselContainerDiv>
   );
 };

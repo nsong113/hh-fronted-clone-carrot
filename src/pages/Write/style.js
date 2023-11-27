@@ -58,15 +58,6 @@ export const InputGoodsPrice = styled.input`
   padding: 8px;
   border: none;
   border-top: 1px solid #ddd;
-  // input 화살표버튼 없애려는 시도.. 안먹힘
-  ::-webkit-inner-spin-button {
-    -webkit-appearance: none; 
-    margin: 0; 
-  };
-  ::-webkit-outer-spin-button {
-    -webkit-appearance: none; 
-    margin: 0; 
-  };
 `
 
 export const InputGoodsContents = styled.textarea`
