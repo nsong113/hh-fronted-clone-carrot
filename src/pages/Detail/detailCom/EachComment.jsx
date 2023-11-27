@@ -20,7 +20,7 @@ const EachComment = ({ isSuccess, currentComments, commentModify, onChangeCommen
   return (
     <St.CommentDiv>
       {isSuccess &&
-        currentComments.map(item => {
+        currentComments?.map(item => {
           return (
             <St.CommentInfoDiv key={item.commentId}>
               {!modifiedComment && <St.SellItemContentContentP>{item.comment}</St.SellItemContentContentP>}

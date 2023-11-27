@@ -14,7 +14,7 @@ const getComments = async goodsId => {
 // 댓글 추가
 const postComments = async ({ goodsId, content }) => {
   //나중에 goodsId로 바꾸기
-  const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/comments/${goodsId}/comments`, content);
+  const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/comments/${goodsId}`, content);
   return response.data;
 };
 
