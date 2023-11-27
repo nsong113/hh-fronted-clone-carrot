@@ -24,7 +24,7 @@ const SellItem = () => {
   //js
   const navigate = useNavigate();
   const param = useParams();
-  console.log('param', param.goodsId);
+  // console.log('param', param.goodsId);
   //좋아요 토글
   const [likeToggle, onClickLikeToggleHandler] = useMyPageToggle();
 
@@ -37,6 +37,7 @@ const SellItem = () => {
 
   //선택한 아이템 필터링
   const foundData = items?.find(a => a.id === parseInt(param.goodsId));
+  // console.log('foundData', foundData);
 
   return (
     <St.SellItemContainerDiv>
@@ -54,7 +55,7 @@ const SellItem = () => {
         <St.SellItemInfoDiv>
           <St.SellItemUserInfoDiv>
             <St.SellItemUserNameDiv>shinny</St.SellItemUserNameDiv>
-            <St.SellItemUserAddDiv>{foundData.wishLocation}</St.SellItemUserAddDiv>
+            <St.SellItemUserAddDiv>{foundData?.wishLocation}</St.SellItemUserAddDiv>
           </St.SellItemUserInfoDiv>
 
           <St.SellItemTempDiv>
@@ -77,18 +78,18 @@ const SellItem = () => {
         <St.SellItemContentDiv>
           <St.SellItemContentInfoDiv>
             <St.SellItemDivFlex>
-              <St.SellItemContentTitleH2>{foundData.goodsTitle}</St.SellItemContentTitleH2>
+              <St.SellItemContentTitleH2>{foundData?.goodsTitle}</St.SellItemContentTitleH2>
               <St.SellItemModifyBox>
                 <St.SellItemModify $color={'red'}>수정</St.SellItemModify>
                 <St.SellItemModify $color={'#999'}>삭제</St.SellItemModify>
               </St.SellItemModifyBox>
             </St.SellItemDivFlex>
             <St.SellItemContentHourP>15시간 전</St.SellItemContentHourP>
-            <St.SellItemContentPriceP>{foundData.price}원</St.SellItemContentPriceP>
-            <St.SellItemContentContentP>{foundData.contents}</St.SellItemContentContentP>
+            <St.SellItemContentPriceP>{foundData?.price}원</St.SellItemContentPriceP>
+            <St.SellItemContentContentP>{foundData?.contents}</St.SellItemContentContentP>
           </St.SellItemContentInfoDiv>
           <St.SellItemLikeFlexDiv>
-            <St.SellItemLikeDiv>관심 {foundData.likeCount}</St.SellItemLikeDiv>
+            <St.SellItemLikeDiv>관심 {foundData?.likeCount}</St.SellItemLikeDiv>
             <St.SellItemLikeDiv> 채팅 20</St.SellItemLikeDiv>
             <St.SellItemLikeDiv>조회 942</St.SellItemLikeDiv>
           </St.SellItemLikeFlexDiv>

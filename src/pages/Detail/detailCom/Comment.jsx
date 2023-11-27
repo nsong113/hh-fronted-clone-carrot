@@ -1,36 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as St from '../style';
 import { FaCommentDots } from 'react-icons/fa';
 import useMyPageToggle from '../../../hooks/useMyPageToggle';
 import useInputValue from '../../../hooks/useInputValue';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { postComments, getComments } from '../../../apis/api/comments';
+import { getGoods } from '../../../apis/api/goods';
+import { useParams } from 'react-router';
+import EachComment from './EachComment';
 
 const Comment = () => {
   const [showToggle, onClickShowToggleHandler] = useMyPageToggle();
-  const [commentValue, onChangeCommentValueHandler] = useInputValue();
+  const [addCommentValue, onChangeCommentValueHandler] = useInputValue();
+  // const [currentComment, setCurrentComment] = useState([]);
   const [addComment, setAddComment] = useState('');
+  // const [commentModifyToggle, onClickCommentModifyHandler] = useMyPageToggle();
+  const [commentModify, onChangeCommentModifyHandler] = useInputValue();
+
+  //Id값 조회
+  const param = useParams();
+  const goodsId = param.goodsId;
 
   //코멘트 조회
-  //조회를 할 떄 id값을 url에 넣어야 함.
-  //1. 함수 안에서 useQuery를 쓸 수 없다. 밖에서 id값을 받아야 한다... 이 부분 생각하기
-  // const { data } = useQuery('getComments', () => getComments(id));
-  // const onClickGetCommentHandler = id => {
-  //   console.log(data);
-  // };
+  const { data, isSuccess } = useQuery('getComments', () => getComments(goodsId));
+  const currentComments = isSuccess && data.comments;
 
   //코멘트 추가
   const queryClient = useQueryClient();
   const postCommentsMutation = useMutation(postComments, {
     onSuccess: () => {
-      // queryClient.invalidateQueries('')
+      queryClient.invalidateQueries('getComments');
     },
   });
-  const onClickAddCommentHandler = id => {
-    // goodsId값 아직 전달 못받음, 나중에 goodsId로 변경하기
+
+  const onClickAddCommentHandler = goodsId => {
+    setAddComment(addCommentValue);
     const content = addComment;
-    postCommentsMutation.mutate({ id, content });
+    postCommentsMutation.mutate({ goodsId, content });
   };
+
+  // console.log(postCommentsMutation);
+  // useEffect(() => {
+  //   postCommentsMutation.status === 'success' ? alert('댓글등록성공!') : null;
+  // }, [postCommentsMutation.status]);
 
   //코멘트 수정
 
@@ -52,24 +64,22 @@ const Comment = () => {
             <St.SellItemModifyBox></St.SellItemModifyBox>
           </St.SellItemDivFlex>
 
-          {showToggle && (
+          {isSuccess && showToggle && (
             <>
               <St.SellItemDivFlex>
-                <textarea style={{ width: '500px' }} value={commentValue} onChange={onChangeCommentValueHandler} />
+                <textarea style={{ width: '500px' }} value={addCommentValue} onChange={onChangeCommentValueHandler} />
                 {/* onClickAddCommentHandler에 goodsId 전달하기 */}
                 <St.SellItemCommentModify $color={'red'} onClick={onClickAddCommentHandler}>
                   댓글 추가
                 </St.SellItemCommentModify>
               </St.SellItemDivFlex>
-              <St.CommentDiv>
-                <St.CommentInfoDiv>
-                  <St.SellItemContentContentP>에누리 되나요?</St.SellItemContentContentP>
-                  <St.CommentModifyBoxDiv>
-                    <St.SellItemModify $color={'red'}>수정</St.SellItemModify>
-                    <St.SellItemModify $color={'#999'}>삭제</St.SellItemModify>
-                  </St.CommentModifyBoxDiv>
-                </St.CommentInfoDiv>
-              </St.CommentDiv>
+
+              <EachComment
+                isSuccess={isSuccess}
+                currentComments={currentComments}
+                commentModify={commentModify}
+                onChangeCommentModifyHandler={onChangeCommentModifyHandler}
+              ></EachComment>
             </>
           )}
         </St.SellItemContentInfoDiv>
