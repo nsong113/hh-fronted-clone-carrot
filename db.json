@@ -21,7 +21,7 @@
   ],
   "goods":[
     {
-    "goodsId": 1,
+    "id": 1,
     "goodsTitle": "사탕",
     "price": 10000,
     "contents": "달콤한 사탕 급매",
@@ -31,7 +31,7 @@
     "haveStock": true
     },
     {
-    "goodsId": 2,
+    "id": 2,
     "goodsTitle": "사탕1",
     "price": 20000,
     "contents": "달콤한 사탕",
@@ -41,7 +41,7 @@
     "haveStock": true
     },
     {
-    "goodsId": 3,
+    "id": 3,
     "goodsTitle": "사탕2",
     "price": 10500,
     "contents": "최저가 달콤한 사탕",
@@ -51,7 +51,7 @@
     "haveStock": true
     },
     {
-    "goodsId": 4,
+    "id": 4,
     "goodsTitle": "마법 사탕3",
     "price": 7000,
     "contents": "해리포터 마법 사탕",
@@ -61,7 +61,7 @@
     "haveStock": true
     },
     {
-    "goodsId": 5,
+    "id": 5,
     "goodsTitle": "사탕4",
     "price": 72000,
     "contents": "에눌가능 달콤한 사탕",

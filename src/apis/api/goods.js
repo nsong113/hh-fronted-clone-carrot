@@ -7,9 +7,8 @@ const getGoods = async () => {
 };
 
 // 상품 등록
-const addGoods = async (newGoods) => {
-  await axios.post(`${process.env.REACT_APP_SERVER_URL}/goods`,newGoods);
+const addGoods = async newGoods => {
+  await axios.post(`${process.env.REACT_APP_SERVER_URL}/goods`, newGoods);
 };
-
 
 export { getGoods, addGoods };

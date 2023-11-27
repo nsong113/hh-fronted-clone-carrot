@@ -24,6 +24,7 @@ const SellItem = () => {
   //js
   const navigate = useNavigate();
   const param = useParams();
+  console.log('param', param.goodsId);
   //좋아요 토글
   const [likeToggle, onClickLikeToggleHandler] = useMyPageToggle();
 
@@ -34,7 +35,8 @@ const SellItem = () => {
   //상세제품 정보 get
   const { data: items } = useQuery('getGoods', getGoods);
 
-  console.log(items);
+  //선택한 아이템 필터링
+  const foundData = items?.find(a => a.id === parseInt(param.goodsId));
 
   return (
     <St.SellItemContainerDiv>
@@ -52,7 +54,7 @@ const SellItem = () => {
         <St.SellItemInfoDiv>
           <St.SellItemUserInfoDiv>
             <St.SellItemUserNameDiv>shinny</St.SellItemUserNameDiv>
-            <St.SellItemUserAddDiv>시흥시 정왕2동</St.SellItemUserAddDiv>
+            <St.SellItemUserAddDiv>{foundData.wishLocation}</St.SellItemUserAddDiv>
           </St.SellItemUserInfoDiv>
 
           <St.SellItemTempDiv>
@@ -75,24 +77,18 @@ const SellItem = () => {
         <St.SellItemContentDiv>
           <St.SellItemContentInfoDiv>
             <St.SellItemDivFlex>
-              <St.SellItemContentTitleH2>삼립호빵 사가세요!</St.SellItemContentTitleH2>
+              <St.SellItemContentTitleH2>{foundData.goodsTitle}</St.SellItemContentTitleH2>
               <St.SellItemModifyBox>
                 <St.SellItemModify $color={'red'}>수정</St.SellItemModify>
                 <St.SellItemModify $color={'#999'}>삭제</St.SellItemModify>
               </St.SellItemModifyBox>
             </St.SellItemDivFlex>
             <St.SellItemContentHourP>15시간 전</St.SellItemContentHourP>
-            <St.SellItemContentPriceP>1000원</St.SellItemContentPriceP>
-            <St.SellItemContentContentP>
-              개당 천원입니다asdfsdfdsafsafdsfadfesfdfasf.개당 천원입니다asdfsdfdsafsafdsfadfesfdfasf.개당
-              천원입니다asdfsdfdsafsafdsfadfesfdfasf.개당 천원입니다asdfsdfdsafsafdsfadfesfdfasf.개당
-              천원입니다asdfsdfdsafsafdsfadfesfdfasf.개당 천원입니다asdfsdfdsafsafdsfadfesfdfasf.개당
-              천원입니다asdfsdfdsafsafdsfadfesfdfasf.개당 천원입니다asdfsdfdsafsafdsfadfesfdfasf.개당
-              천원입니다asdfsdfdsafsafdsfadfesfdfasf.개당 천원입니다asdfsdfdsafsafdsfadfesfdfasf.
-            </St.SellItemContentContentP>
+            <St.SellItemContentPriceP>{foundData.price}원</St.SellItemContentPriceP>
+            <St.SellItemContentContentP>{foundData.contents}</St.SellItemContentContentP>
           </St.SellItemContentInfoDiv>
           <St.SellItemLikeFlexDiv>
-            <St.SellItemLikeDiv>관심 8</St.SellItemLikeDiv>
+            <St.SellItemLikeDiv>관심 {foundData.likeCount}</St.SellItemLikeDiv>
             <St.SellItemLikeDiv> 채팅 20</St.SellItemLikeDiv>
             <St.SellItemLikeDiv>조회 942</St.SellItemLikeDiv>
           </St.SellItemLikeFlexDiv>
