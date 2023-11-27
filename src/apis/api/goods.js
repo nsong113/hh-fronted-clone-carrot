@@ -4,10 +4,10 @@ import axios from 'axios';
 const getGoods = async () => {
   const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/goods`);
   return res.data;
-
 };
+
 // 상품 등록
-const addGoods = async (newGoods) => {
+const addGoods = async newGoods => {
   try {
     await axios.post(`${process.env.REACT_APP_SERVER_URL}/goods`, newGoods);
   } catch (error) {
@@ -15,6 +15,5 @@ const addGoods = async (newGoods) => {
     throw error; // 에러를 다시 던져서 호출자(caller)에서 잡을 수 있게 함
   }
 };
-
 
 export { getGoods, addGoods };
