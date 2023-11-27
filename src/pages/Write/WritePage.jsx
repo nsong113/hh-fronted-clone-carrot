@@ -1,7 +1,9 @@
 import React from "react";
+import GoodsInput from "./WriteCom/GoodsInput";
 
 const WritePage = () => {
-  return <div>WritePage</div>;
+  const WriteGoodsTitle = "상품 등록";
+  return <GoodsInput WriteGoodsTitle={WriteGoodsTitle}/>;
 };
 
 export default WritePage;
