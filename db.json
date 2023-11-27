@@ -73,6 +73,16 @@
       "wishLocation": "서울시 강동구 천호동",
       "likeCount": 7,
       "haveStock": true
+    },
+    {
+      "goodsTitle": "asdfsf",
+      "price": "423234234",
+      "contents": "",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+      "wishLocation": "충청도 노원구 둔촌동",
+      "likeCount": 0,
+      "haveStock": true,
+      "id": 6
     }
   ],
   "comments": [

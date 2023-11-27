@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as St from '../style';
 import { FaCommentDots } from 'react-icons/fa';
 import useMyPageToggle from '../../../hooks/useMyPageToggle';
@@ -23,7 +23,7 @@ const Comment = () => {
 
   //코멘트 조회
   const { data, isSuccess } = useQuery('getComments', () => getComments(goodsId));
-  const currentComments = isSuccess && data.comments;
+  const currentComments = isSuccess && data?.comments;
 
   //코멘트 추가
   const queryClient = useQueryClient();
