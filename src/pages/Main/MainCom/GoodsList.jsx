@@ -24,6 +24,7 @@ const GoodsList = () => {
         <St.LocatonBtn>동네를 선택하세요 </St.LocatonBtn>
       </St.LocatonBoxP>
       <St.GoodsListDiv>
+        상품 리스트 박스
         {data?.map(item => {
           return (
             <St.GoodsBoxDiv key={item.id} onClick={() => DetailLinkHandler(item.id)}>

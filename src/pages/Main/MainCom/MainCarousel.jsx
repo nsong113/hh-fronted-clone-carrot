@@ -28,14 +28,14 @@ const MainCarousel = () => {
   ];
   return (
     <St.CarouselContainerDiv>
-      <Carousel cycleNavigation={true} navButtonsAlwaysVisible={true}>
+      {/* <Carousel cycleNavigation={true} navButtonsAlwaysVisible={true}>
           {MainCarouselArr?.map((content) => (
             <St.CarouselBoxDiv key={content.id}>
               <img src={content.url} />
             </St.CarouselBoxDiv>
           ))}
-      </Carousel>
-      엑박. 뜨는. 이유. 찾기.
+      </Carousel> */}
+      엑박. 뜨는. 이유. 찾기..
       아니면. 캐러셀. 바꾸기.
       <img src="./assets/hDaangnMainImg5.png" alt="MainSlideImg"/>
     </St.CarouselContainerDiv>

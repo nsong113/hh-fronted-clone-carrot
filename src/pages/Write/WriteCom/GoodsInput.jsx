@@ -27,6 +27,7 @@ const GoodsInput = ({WriteGoodsTitle}) => {
   const imgIcon = {
     width: '50px',
     height: '50px',
+    display: 'block',
     margin: '0 auto',
     color: '#bbb',
   }
@@ -106,7 +107,7 @@ const GoodsInput = ({WriteGoodsTitle}) => {
       <form>
         <St.InputImgLabel>
           <MdAddPhotoAlternate style={imgIcon}/>
-          <p>이미지 등록</p>
+          <St.InputImgP>이미지 등록</St.InputImgP>
         </St.InputImgLabel>
         <input type="file" accept="image/*" style={{display: 'none'}} onChange={onChangeImg}/>
       </form>

@@ -6,7 +6,7 @@ const getGoods = async () => {
   .then((res)=>{
     console.log("axios getGoods",res.data);
   }).catch((error)=>{
-    alert("상품을 불러오지 못했습니다.",error);
+    console.log("상품을 불러오지 못했습니다.",error);
   });
 };
 // 상품 등록
