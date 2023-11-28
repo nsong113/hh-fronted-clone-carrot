@@ -13,7 +13,7 @@ const GoodsList = () => {
 
 
   const DetailLinkHandler = id => {
-    navigate(`/detail/${id}`); // [상세보기]를 선택하는 경우 이동하는 함수
+    navigate(`/detail/${id}`); 
   };
 
   return (
@@ -24,12 +24,10 @@ const GoodsList = () => {
         <St.LocatonBtn>동네를 선택하세요 </St.LocatonBtn>
       </St.LocatonBoxP>
       <St.GoodsListDiv>
-        상품 리스트 박스
         {data?.map(item => {
           return (
             <St.GoodsBoxDiv key={item.id} onClick={() => DetailLinkHandler(item.id)}>
               <St.GoodsImgDiv>
-                상품이미지
                 <img src={item.goodsImg} />
               </St.GoodsImgDiv>
               <h3>{item.goodsTitle}</h3>
