@@ -18,7 +18,7 @@ const addGoods = async newGoods => {
 
 // 이미지 업로드
 const UploadImg = async formData => {
-  const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/img`, formData);
+  const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/v1/upload`, formData);
   return res.data;
 }
 
