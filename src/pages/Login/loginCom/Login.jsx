@@ -58,7 +58,7 @@ const Login = () => {
                 />
               </div>
               {5 <= userName.length && userName.length <= 12 && /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/.test(userName) ? (
-                <p style={{ color: 'transparent', userSelect: 'none' }}>.</p>
+                <p></p>
               ) : (
                 <St.SignupErrorMsgP>5 ~ 12자 이내의 영문, 숫자 조합을 입력하세요</St.SignupErrorMsgP>
               )}
@@ -73,7 +73,7 @@ const Login = () => {
                 onChange={onChangePasswordHandler}
               />
               {5 <= password.length && password.length <= 12 ? (
-                <p style={{ color: 'transparent', userSelect: 'none' }}>.</p>
+                <p></p>
               ) : (
                 <St.SignupErrorMsgP>비밀번호는 5~12자 이내로 입력하세요</St.SignupErrorMsgP>
               )}

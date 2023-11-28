@@ -44,10 +44,6 @@ const Comment = () => {
   //   postCommentsMutation.status === 'success' ? alert('댓글등록성공!') : null;
   // }, [postCommentsMutation.status]);
 
-  //코멘트 수정
-
-  //코멘트 삭제
-
   return (
     <St.SellItemContainerDiv>
       <St.SellItemContentDiv>
@@ -79,7 +75,7 @@ const Comment = () => {
                   currentComments?.map(item => {
                     console.log(typeof item.commentId);
                     console.log(typeof editCommentId);
-                    return <EachComment item={item} />;
+                    return <EachComment item={item} param={param} />;
                   })}
               </St.CommentDiv>
 
