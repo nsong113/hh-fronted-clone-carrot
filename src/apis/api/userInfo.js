@@ -23,11 +23,36 @@ const loginPost = async loginUser => {
       withCredentials: true,
     });
     alert(`${res.data.message}`);
+    const setCookieHeader = res.headers.get('Authorization');
+    document.cookie = setCookieHeader;
 
-    console.log(res);
+    // const setCookie = res.headers.get('Set-Cookie');
+    // const setCookie = res.headers['Authorization'];
+    // console.log('header', setCookie.headers);
+    // console.log('setCookie', setCookie);
 
+    //1
     // const token = res.data.token;
     // sessionStorage.setItem('token', token);
+
+    //2
+    // 서버 응답에서 Set-Cookie 헤더를 추출
+    // const setCookieHeader = response.headers.get('Set-Cookie');
+
+    // // 쿠키를 로컬에 저장
+    // document.cookie = setCookieHeader;
+
+    // // 쿠키에서 특정 쿠키 값을 가져오기
+    // const authToken = document.cookie
+    //   .split('; ')
+    //   .find(row => row.startsWith('Authorization='))
+    //   .split('=')[1];
+
+    // // authToken을 어딘가에 저장하거나 사용
+
+    //3.
+    // localStorage.setItem('token', setCookieHeader);
+    //sessionStorage.setItem('token',setCookieHeader)
 
     return res.status;
   } catch (error) {

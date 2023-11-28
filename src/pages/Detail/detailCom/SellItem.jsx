@@ -55,6 +55,9 @@ const SellItem = () => {
     prevPage ? navigate(`/detail/${parseInt(prevPage)}`) : alert('더 이상 상품이 존재하지 않습니다.');
   };
   const onClickNextNavigateHandler = () => {
+    //전체 배열에서의 인덱스 ..
+    ///다음 배열 인덱스의 아이디...
+    //첫 페이지와 마지막 페이지 예외처리 :
     nextPage ? navigate(`/detail/${parseInt(nextPage)}`) : alert('더 이상 상품이 존재하지 않습니다. ');
   };
 
