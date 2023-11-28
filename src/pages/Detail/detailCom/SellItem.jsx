@@ -23,14 +23,13 @@ const SellItem = () => {
   //좋아요 post 요청
   const addLikeCountMutation = useMutation(addLikeCount);
   const onClickPostLikeHandler = () => {
-    console.log(items);
-    addLikeCountMutation.mutate(items.id);
+    addLikeCountMutation.mutate(parseInt(param.goodsId));
   };
 
   //좋아요 delete 요청
   const deleteLikeCountMutation = useMutation(deleteLikeCount);
   const onClickDeleteLikeHandler = () => {
-    deleteLikeCountMutation.mutate(items.id);
+    deleteLikeCountMutation.mutate(parseInt(param.goodsId));
   };
 
   //전체 goods에서 선택한 아이템 필터링
