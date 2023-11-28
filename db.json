@@ -103,6 +103,16 @@
       "likeCount": 0,
       "haveStock": true,
       "id": 8
+    },
+    {
+      "goodsTitle": "ㅁㄴㄹㄴ",
+      "price": "ㅁㄹㄴㅁ",
+      "contents": "ㅇㄹㄴㄹ",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
+      "wishLocation": "  ",
+      "likeCount": 0,
+      "haveStock": true,
+      "id": 9
     }
   ],
   "comments": [
