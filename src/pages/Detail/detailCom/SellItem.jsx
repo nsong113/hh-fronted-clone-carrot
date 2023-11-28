@@ -5,47 +5,83 @@ import { FcLike, FcLikePlaceholder } from 'react-icons/fc';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import useMyPageToggle from '../../../hooks/useMyPageToggle';
 import { useNavigate, useParams } from 'react-router';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { getGoods } from '../../../apis/api/goods';
+import { addLikeCount, deleteLikeCount } from '../../../apis/api/comments';
 
 const SellItem = () => {
-  //style
-  const likeStyle = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    fontSize: '30px',
-  };
-  const arrowStyle = {
-    fontSize: '60px',
-    cursor: 'pointer',
-  };
-
-  //js
   const navigate = useNavigate();
   const param = useParams();
   // console.log('param', param.goodsId);
+
+  //전체 goods 조회
+  const { data: items } = useQuery('getGoods', getGoods);
+
   //좋아요 토글
   const [likeToggle, onClickLikeToggleHandler] = useMyPageToggle();
 
-  //좌, 우 페이지네이션
-  const onClickPrevNavigateHandler = () => {};
-  const onClickNextNavigateHandler = () => {};
+  //좋아요 post 요청
+  const addLikeCountMutation = useMutation(addLikeCount);
+  const onClickPostLikeHandler = () => {
+    console.log(items);
+    addLikeCountMutation.mutate(items.id);
+  };
 
-  //상세제품 정보 get
-  const { data: items } = useQuery('getGoods', getGoods);
+  //좋아요 delete 요청
+  const deleteLikeCountMutation = useMutation(deleteLikeCount);
+  const onClickDeleteLikeHandler = () => {
+    deleteLikeCountMutation.mutate(items.id);
+  };
 
-  //선택한 아이템 필터링
+  //전체 goods에서 선택한 아이템 필터링
   const foundData = items?.find(a => a.id === parseInt(param.goodsId));
-  // console.log('foundData', foundData);
+
+  ///이전, 다음 버튼 눌렀을 때 나올 아이들
+  const minItems = items?.filter(a => a.id < foundData.id);
+  const maxItems = items?.filter(a => a.id > foundData.id);
+
+  const prevPage = minItems?.reverse()[0]?.id;
+  const nextPage = maxItems && maxItems[0]?.id;
+
+  // const prev = prevPage ?? items?[items?.length - 1]?.id;
+  // const next = nextPage ?? items?[0]?.id;
+
+  //nullish coalescing operator
+  // const result = a ?? b;
+  //a에 값이 있다면 a를 할당 없다면 b를 할당
+
+  //좌, 우 페이지네이션
+  const onClickPrevNavigateHandler = () => {
+    prevPage ? navigate(`/detail/${parseInt(prevPage)}`) : alert('더 이상 상품이 존재하지 않습니다.');
+  };
+  const onClickNextNavigateHandler = () => {
+    nextPage ? navigate(`/detail/${parseInt(nextPage)}`) : alert('더 이상 상품이 존재하지 않습니다. ');
+  };
 
   return (
     <St.SellItemContainerDiv>
       <St.SellItemArrowFlex>
         <IoIosArrowBack style={arrowStyle} onClick={onClickPrevNavigateHandler} />
         <St.SellItemLikeBtn>
-          {likeToggle && <FcLikePlaceholder style={likeStyle} onClick={onClickLikeToggleHandler} />}
-          {!likeToggle && <FcLike style={likeStyle} onClick={onClickLikeToggleHandler} />}
+          {likeToggle && (
+            <FcLikePlaceholder
+              style={likeStyle}
+              onClick={() => {
+                onClickLikeToggleHandler();
+                onClickPostLikeHandler();
+              }}
+            />
+          )}
+
+          {!likeToggle && (
+            <FcLike
+              style={likeStyle}
+              onClick={() => {
+                onClickLikeToggleHandler();
+                onClickDeleteLikeHandler();
+              }}
+            />
+          )}
           <St.SellItemStatusDiv>좋아요</St.SellItemStatusDiv>
         </St.SellItemLikeBtn>
         <IoIosArrowForward style={arrowStyle} onClick={onClickNextNavigateHandler} />
@@ -100,3 +136,15 @@ const SellItem = () => {
 };
 
 export default SellItem;
+
+//style
+const likeStyle = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  fontSize: '30px',
+};
+const arrowStyle = {
+  fontSize: '60px',
+  cursor: 'pointer',
+};

@@ -22,6 +22,14 @@ const loginPost = async loginUser => {
     const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/login`, loginUser, {
       withCredentials: true,
     });
+    alert(`${res.data.message}`);
+
+    console.log(res);
+
+    // const token = res.data.token;
+    // sessionStorage.setItem('token', token);
+
+    return res.status;
   } catch (error) {
     console.log('loginPost error', error);
   }
@@ -30,7 +38,7 @@ const loginPost = async loginUser => {
 //회원가입 userId 중복 확인 get
 const signupCheckDuplicationGet = async username => {
   try {
-    const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/signup/checkName`, {
+    const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/signup/check-name`, {
       params: {
         username: username,
       },
