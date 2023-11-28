@@ -6,7 +6,7 @@ export const CarouselContainerDiv = styled.div`
 
 export const CarouselBoxDiv = styled.div`
   width: 100%;
-  height: 400px;
+  justify-content: center;  
 `;
 
 export const GoodsContainerDiv = styled.div`
@@ -57,7 +57,8 @@ export const GoodsBoxDiv = styled.div`
 `;
 export const GoodsImgDiv = styled.div`
   width: 100%;
-  height: 250px;
+  height: 0;
+  padding-top: 100%; /* 높이를 너비와 동일하게 */
   border-radius: 14px;
   background-color: #bbb;
 `;
