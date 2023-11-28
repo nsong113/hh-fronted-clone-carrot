@@ -25,17 +25,31 @@ const MainCarousel = () => {
       url: '../hDaangnMainImg5.png',
     },
   ];
+
+  const imgUrl = "../../../../hDaangnMainImg1.png";
   return (
     <St.CarouselContainerDiv>
-      <Carousel cycleNavigation={true} navButtonsAlwaysVisible={true}>
+      <Carousel 
+        cycleNavigation={true} 
+        navButtonsAlwaysVisible={true}
+        navButtonsProps={{style: {backgroundColor: '#bbb',}}}
+        indicatorIconButtonProps={{
+          style: {
+            width: '20px',
+            padding: '2px',
+            color: '#eee'
+          }}}
+        activeIndicatorIconButtonProps={{
+          style: {
+              color: 'var(--main-color)'
+          }}}
+      >
         {MainCarouselArr?.map(content => (
           <St.CarouselBoxDiv key={content.id}>
-            <img src={content.url} />
+            <img src={content.url} style={{width: '100%'}}/>
           </St.CarouselBoxDiv>
         ))}
       </Carousel>
-      엑박. 뜨는. 이유. 찾기. 아니면. 캐러셀. 바꾸기.
-      <img src="/src/pages/Main/hDaangnMainImg6.png" alt="MainSlideImg" />
     </St.CarouselContainerDiv>
   );
 };
