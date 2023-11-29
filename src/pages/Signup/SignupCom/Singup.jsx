@@ -20,6 +20,7 @@ const Singup = () => {
   const [si, onChangeSiHandler] = useInputValue();
   const [gu, onChangeGuHandler] = useInputValue();
   const [dong, onChangeDongHandler] = useInputValue();
+  const [checkUserName, setCheckUserName] = useState(false);
 
   //username 중복검사
   const onChangeDuplicateHandler = e => {
@@ -35,6 +36,13 @@ const Singup = () => {
         withCredentials: true,
       });
       console.log(res);
+      if (res.status === 200) {
+        setCheckUserName(true);
+      }
+      if (res.status === 400) {
+        setCheckUserName(false);
+      }
+      return res.data;
     } catch (error) {
       console.log('debounceOnChange error', error);
     }
@@ -60,7 +68,13 @@ const Singup = () => {
 
   const onClickSignUpBtnHandler = e => {
     e.preventDefault();
-    signupMutation.mutate(newUser);
+    if (checkUserName && nickName && password && confirmPassword && email && phoneNum && si && gu) {
+      alert('회원가입 완료');
+      navigate('/login');
+      return signupMutation.mutate(newUser);
+    } else {
+      alert('값을 모두 입력하고, 아이디 중복 메시지를 확인해주세요');
+    }
   };
 
   //취소버튼
@@ -105,6 +119,8 @@ const Singup = () => {
               ) : (
                 <St.SignupErrorMsgP>5 ~ 12자 이내의 영문, 숫자 조합을 입력하세요</St.SignupErrorMsgP>
               )}
+              {checkUserName && <St.SignupErrorMsgP>사용가능한 Username입니다.</St.SignupErrorMsgP>}
+              {!checkUserName && <St.SignupErrorMsgP>사용 불가능한 Username입니다.</St.SignupErrorMsgP>}
               {/* <p>아이디 중복을 확인하세요</p> */}
               {/* <p>사용가능한 아이디입니다.</p> */}
             </St.Signup1Div>
