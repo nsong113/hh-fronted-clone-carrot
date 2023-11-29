@@ -5,7 +5,7 @@ import { deleteComments } from '../../../apis/api/comments';
 
 const EachComment = ({ item, param }) => {
   // console.log('item', item);
-  const { comment, commentId } = item;
+  // const { comment, commentId } = item;
 
   //현재 인풋 값
   // const [inputValue, setInputValue] = useState(comment);
