@@ -3,11 +3,15 @@ import Navbar from './Navbar';
 import * as St from './style';
 import { useNavigate } from 'react-router';
 import useInputValue from '../hooks/useInputValue';
+import { useDispatch, useSelector } from 'react-redux';
+import { setInputValue } from '../redux/modules/search';
 
 const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   //input 상태관리
-  const [searchInput, setSearchInput] = useInputValue();
+  const [searchInput, searchInputValueHandler] = useInputValue();
 
   //홈버튼 클릭
   const onClickGoHomeHandler = () => {
@@ -15,7 +19,12 @@ const Header = () => {
   };
 
   //검색
-  const onClickSearchHandler = () => {};
+  // const input = useSelector(state => state.search.input);
+  //input값을 RTK에 보내기
+  const onClickSearchHandler = () => {
+    dispatch(setInputValue(searchInput));
+    // console.log('searchInput', searchInput);
+  };
 
   //로그아웃
   const onClickLogoutHandler = () => {};
@@ -30,7 +39,7 @@ const Header = () => {
             type="text"
             placeholder="물품이나 동네를 검색해보세요."
             value={searchInput}
-            onChange={setSearchInput}
+            onChange={searchInputValueHandler}
             style={{
               height: '35px',
               width: '300px',
