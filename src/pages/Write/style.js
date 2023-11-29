@@ -11,6 +11,8 @@ export const GoodsContainerDiv = styled.div`
 `;
 
 export const GoodsTitleP = styled.p`
+  font-size: 20px;
+  font-weight: bold;
   margin: 0 auto 30px;
 `
 
@@ -30,6 +32,7 @@ export const InputBackSpan = styled.span`
 export const InputCompleteSpan = styled.span`
   cursor: pointer;
   padding: 10px 18px;
+  font-weight: bold;
   color: var(--main-color);
 `
 
@@ -41,8 +44,14 @@ export const InputImgLabel = styled.label`
   border: 1px solid #ddd;
 `
 
+export const InputImg = styled.img`
+  width: 60px;
+  display: block;
+  margin: 2px auto;
+`
+
 export const InputImgP = styled.p`
-  font-size: 14px;
+  font-size: 12px;
   color: #bbb;
 `
 
@@ -82,5 +91,6 @@ export const SelectionFlex = styled.div`
 export const InputSelectContainer = styled.div`
   height: 30px;
   background-color: transparent;
+  position: relative;
   outline: none;
 `

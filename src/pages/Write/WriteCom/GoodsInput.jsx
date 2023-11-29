@@ -1,46 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import * as St from '../style';
-import { MdAddPhotoAlternate } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 import useInputValue from '../../../hooks/useInputValue';
 import { useMutation } from 'react-query';
-import { addGoods } from '../../../apis/api/goods';
+import { UploadImg, addGoods } from '../../../apis/api/goods';
 import { useNavigate } from 'react-router-dom';
-import { nanoid } from 'nanoid';
 
 
 const GoodsInput = ({WriteGoodsTitle}) => {
   const navigate = useNavigate();
   
 
-  // 상품 추가 (완료버튼)
-  const onClickAddHandler = () => {
-    const newGoods = {
-      goodsTitle,
-      price,
-      contents,
-      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq4S9La2QVLk-zhJwtpm3IQqj-DeVrJLZV3Q&usqp=CAU",
-      wishLocation,
-      likeCount: Math.floor(Math.random()),
-      haveStock: true
-      };
-    addGmutation.mutate(newGoods);
-    console.log(newGoods);
-    };
-
-  // 메인으로 (취소버튼)
-  const onClickCancelHandler = () => {
-    navigate('/');
-  };
-
-  const [imgFile,setImgFile] = useState()
+  const [imgFile,setImgFile] = useState({
+    image_file: "",
+    preview_URL: "../default_uploadImg.png",
+  });
   const [goodsTitle, onChangeGoodsTitleHandler] = useInputValue();
   const [price, onChangePriceHandler] = useInputValue();
   const [contents, onChangeContentsHandler] = useInputValue();
   const [si, onChangeSiHandler] = useInputValue();
   const [gu, onChangeGuHandler] = useInputValue();
   const [dong, onChangeDongHandler] = useInputValue();
-
 
   // 주소 합치기
   const [wishLocation, setWishLocation] = useState('');
@@ -55,18 +35,61 @@ const GoodsInput = ({WriteGoodsTitle}) => {
     },
   });
 
-  const onChangeImg = (e) => {
-    e.preventDefault();
+  const  uploadImgMutation = useMutation(UploadImg,{
+    onSuccess: () => {
+      alert('이미지가 등록되었습니다.');
+    },
+  });
+
+  // 이미지 업로드
+  const onChangeImg = async (e) => {
     const formData = new FormData();
     
     if(e.target.files){
+      // 새로운 이미지 올리면 createObjectURL()로 생성한 기존 URL 폐기
+      URL.revokeObjectURL(imgFile.preview_URL);
+
       const uploadFile = e.target.files[0]
       formData.append('file',uploadFile)
-      setImgFile(uploadFile)
-      console.log(uploadFile)
-      console.log('===useState===')
-      console.log(imgFile)
+      uploadImgMutation.mutate(formData);
+      
+      const preview_URL = URL.createObjectURL(uploadFile);
+      setImgFile(() => (
+        {
+          image_file: e.target.files[0],
+          preview_URL: preview_URL
+        }
+      ))
+      console.log("uploadFile : ",uploadFile)
+      console.log('useState(setImgFile) : ',imgFile)
     }
+  };
+
+  useEffect(()=> {
+    return () => {
+      // 컴포넌트 언마운트되면 createObjectURL()로 생성한 기존 URL 폐기
+      URL.revokeObjectURL(imgFile.preview_URL)
+    }
+  }, [])
+
+  // 상품 추가 (완료버튼)
+  const onClickAddHandler = () => {
+    const newGoods = {
+      goodsTitle,
+      price,
+      contents,
+      imageUrl: imgFile.preview_URL,
+      wishLocation,
+      likeCount: Math.floor(Math.random()),
+      haveStock: true
+      };
+    addGmutation.mutate(newGoods);
+    console.log(newGoods);
+    };
+
+  // 메인으로 (취소버튼)
+  const onClickCancelHandler = () => {
+    navigate('/');
   };
 
   return (
@@ -76,21 +99,30 @@ const GoodsInput = ({WriteGoodsTitle}) => {
         <St.InputBackSpan onClick={onClickCancelHandler}>취소</St.InputBackSpan>
         <St.InputCompleteSpan onClick={onClickAddHandler}>완료</St.InputCompleteSpan>
       </St.InputConfirmdiv>
-      <form>
-        {/* 아이디, htmlfor */}
-        <St.InputImgLabel>
-          <MdAddPhotoAlternate style={imgIcon}/>
+
+      <form onSubmit={e => {e.preventDefault()}} encType="multipart/form-data" >
+        <St.InputImgLabel htmlFor="img">
+          <St.InputImg src={imgFile.preview_URL} />
           <St.InputImgP>이미지 등록</St.InputImgP>
         </St.InputImgLabel>
-        <input type="file" accept="image/*" style={{display: 'none'}} onChange={onChangeImg}/>
+        <input id="img" type="file" accept="image/*" style={{display: 'none'}} 
+        onChange={onChangeImg}
+        // 클릭할 때 마다 file input의 value를 초기화 하지 않으면 버그 발생할 수 있음
+        onClick={(e) => e.target.value = null}
+        />
       </form>
+
       <St.InputGoodsTitle placeholder='상품명' value={goodsTitle} onChange={onChangeGoodsTitleHandler}/>
-      <St.InputGoodsPrice placeholder='가격' value={price} type="text" onChange={onChangePriceHandler}/>
+      <St.InputGoodsPrice placeholder='가격' 
+        value={price} onChange={onChangePriceHandler}
+        type="text" onInput={(e) => { // 숫자가 아닌 문자 제거
+        e.target.value = e.target.value.replace(/[^\d]/g, '');}}/>
       <St.InputGoodsContents  value={contents} onChange={onChangeContentsHandler}
         placeholder='상품 설명을 입력해주세요. 
         구매 시기, 모델명, 제품의 상태 (사용감, 하자 유무 등) 
         * SNS계정, 전화번호 등 개인정보는 입력하지 않도록 주의해주세요.
         안전하고 건전한 거래 환경을 위해 과학기술정보통신부, 한국인터넷진흥원과 함께합니다.'/>
+
       <St.SelectionFlex>
       <St.InputLocationLabel>거래 희망 장소</St.InputLocationLabel>
         <St.InputSelectContainer>
@@ -153,14 +185,6 @@ const selection = {
   padding: '5px 10px',
   backgroundColor: 'transparent',
 };
-
-const imgIcon = {
-  width: '50px',
-  height: '50px',
-  display: 'block',
-  margin: '0 auto',
-  color: '#bbb',
-}
 
 const icon = {
   position: 'absolute',
