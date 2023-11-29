@@ -1,48 +1,14 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import useInputValue from '../../../hooks/useInputValue';
 import { signupPost } from '../../../apis/api/userInfo';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router';
 import * as St from '../style';
-import { signupCheckDuplicationGet } from '../../../apis/api/userInfo';
 import { debounce } from 'lodash';
 import axios from 'axios';
 
 const Singup = () => {
-  //인라인스타일링
-  const inputStyle = {
-    width: '300px',
-    height: '30px',
-    fontSize: '13px',
-    marginTop: '5px',
-    outline: 'none',
-    border: '1px solid #ddd',
-    borderRadius: '5px',
-  };
-
-  const selection = {
-    width: '98%',
-    height: '30px',
-    appearance: 'none',
-    outline: 'none',
-    border: '1px solid #ddd',
-    borderRadius: '5px',
-    fontSize: '13px',
-    padding: '5px 10px',
-    backgroundColor: 'transparent',
-  };
-
-  const icon = {
-    position: 'absolute',
-    right: '10px',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    zIndex: '-1',
-    color: 'var(--main-color)',
-  };
-
-  ////////////////////////////////////////////////////////
   //input 상태관리
   const navigate = useNavigate();
   const [nickName, onChangeNickNameHandler] = useInputValue();
@@ -62,10 +28,11 @@ const Singup = () => {
 
   const debounceOnChange = debounce(async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/signup/checkName`, {
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/signup/check-name`, {
         params: {
           username: userName,
         },
+        withCredentials: true,
       });
       console.log(res);
     } catch (error) {
@@ -263,3 +230,35 @@ const Singup = () => {
 };
 
 export default Singup;
+
+//인라인스타일링
+const inputStyle = {
+  width: '300px',
+  height: '30px',
+  fontSize: '13px',
+  marginTop: '5px',
+  outline: 'none',
+  border: '1px solid #ddd',
+  borderRadius: '5px',
+};
+
+const selection = {
+  width: '98%',
+  height: '30px',
+  appearance: 'none',
+  outline: 'none',
+  border: '1px solid #ddd',
+  borderRadius: '5px',
+  fontSize: '13px',
+  padding: '5px 10px',
+  backgroundColor: 'transparent',
+};
+
+const icon = {
+  position: 'absolute',
+  right: '10px',
+  top: '50%',
+  transform: 'translateY(-50%)',
+  zIndex: '-1',
+  color: 'var(--main-color)',
+};
