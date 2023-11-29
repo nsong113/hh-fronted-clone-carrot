@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react'
 import * as St from '../style';
 import { IoMdArrowDropdown } from "react-icons/io";
 import useInputValue from '../../../hooks/useInputValue';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { UploadImg, addGoods } from '../../../apis/api/goods';
 import { useNavigate } from 'react-router-dom';
 
 
 const GoodsInput = ({WriteGoodsTitle}) => {
   const navigate = useNavigate();
-  
 
   const [imgFile,setImgFile] = useState({
     image_file: "",
@@ -36,8 +35,8 @@ const GoodsInput = ({WriteGoodsTitle}) => {
   });
 
   const  uploadImgMutation = useMutation(UploadImg,{
-    onSuccess: () => {
-      // alert('이미지가 등록되었습니다.');
+    onSuccess: (data) => {
+      console.log('이미지 업로드 성공:', data);
     },
   });
 
@@ -51,7 +50,9 @@ const GoodsInput = ({WriteGoodsTitle}) => {
 
       const uploadFile = e.target.files[0]
       formData.append('file',uploadFile)
-      uploadImgMutation.mutate(formData);
+      // 이미지 업로드 요청
+      await uploadImgMutation.mutateAsync(formData);
+      // uploadImgMutation.mutate(formData);
       
       const preview_URL = URL.createObjectURL(uploadFile);
       setImgFile(() => (
@@ -73,14 +74,16 @@ const GoodsInput = ({WriteGoodsTitle}) => {
   }, [])
 
   // 상품 추가 (완료버튼)
-  const onClickAddHandler = () => {
+  const onClickAddHandler = async () => {
+    // 이미지 업로드가 완료된 후에 data 가져오기
+    await uploadImgMutation.mutateAsync();
     const newGoods = {
       goodsTitle,
       price,
       contents,
-      imageUrl: imgFile.preview_URL,
+      imageURL: uploadImgMutation.data.imageURL[0],
       wishLocation,
-      likeCount: Math.floor(Math.random()),
+      likeCount: 0,
       haveStock: true
       };
     addGmutation.mutate(newGoods);
