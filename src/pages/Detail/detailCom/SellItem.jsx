@@ -6,7 +6,7 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import useMyPageToggle from '../../../hooks/useMyPageToggle';
 import { useNavigate, useParams } from 'react-router';
 import { useMutation, useQuery } from 'react-query';
-import { getGoods } from '../../../apis/api/goods';
+import { deleteGoods, getGoods } from '../../../apis/api/goods';
 import { addLikeCount, deleteLikeCount } from '../../../apis/api/comments';
 
 const SellItem = () => {
@@ -50,6 +50,17 @@ const SellItem = () => {
   };
   const onClickNextNavigateHandler = () => {
     nextPage ? navigate(`/detail/${parseInt(nextPage)}`) : alert('더 이상 상품이 존재하지 않습니다. ');
+  };
+
+  //삭제 버튼 눌렀을 때 goodsItem 삭제하기
+  const deleteGoodsMutation = useMutation(deleteGoods);
+  const onCLickDeleteGoodsItemHandler = goodsId => {
+    deleteGoodsMutation.mutate(goodsId);
+  };
+
+  //수정 버튼 눌렀을 때 수정 페이지로 이동
+  const onClickGotoEditPageHandler = () => {
+    navigate('/modify');
   };
 
   return (
@@ -110,8 +121,12 @@ const SellItem = () => {
             <St.SellItemDivFlex>
               <St.SellItemContentTitleH2>{foundData?.goodsTitle}</St.SellItemContentTitleH2>
               <St.SellItemModifyBox>
-                <St.SellItemModify $color={'red'}>수정</St.SellItemModify>
-                <St.SellItemModify $color={'#999'}>삭제</St.SellItemModify>
+                <St.SellItemModify $color={'red'} onClick={onClickGotoEditPageHandler}>
+                  수정
+                </St.SellItemModify>
+                <St.SellItemModify $color={'#999'} onClick={() => onCLickDeleteGoodsItemHandler(foundData?.id)}>
+                  삭제
+                </St.SellItemModify>
               </St.SellItemModifyBox>
             </St.SellItemDivFlex>
             <St.SellItemContentHourP>15시간 전</St.SellItemContentHourP>
@@ -120,7 +135,6 @@ const SellItem = () => {
           </St.SellItemContentInfoDiv>
           <St.SellItemLikeFlexDiv>
             <St.SellItemLikeDiv>관심 {foundData?.likeCount}</St.SellItemLikeDiv>
-            <St.SellItemLikeDiv> 채팅 20</St.SellItemLikeDiv>
             <St.SellItemLikeDiv>조회 942</St.SellItemLikeDiv>
           </St.SellItemLikeFlexDiv>
         </St.SellItemContentDiv>
