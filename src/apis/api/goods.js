@@ -26,14 +26,14 @@ const UploadImg = async formData => {
   alert('이미지가 등록되었습니다.');
   return res.data;
   } catch (error) {
-    console.error('Error in UploadImg :', error);
+    console.error('UploadImg 에러 :', error);
   }
 }
 
 // 상품 수정
-const updateGoods = async (goodsId, updatedGoods) => {
+const updateGoods = async (goodsId, upGoods) => {
   try {
-    await instance.put(`/goods/${goodsId}`, updatedGoods);
+    await instance.put(`/goods/${goodsId}`, upGoods);
   } catch (error) {
     console.error('Error in updateGoods :', error);
   }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import * as St from '../style';
 import { IoMdArrowDropdown } from "react-icons/io";
 import useInputValue from '../../../hooks/useInputValue';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { UploadImg, addGoods } from '../../../apis/api/goods';
 import { useNavigate } from 'react-router-dom';
 
@@ -83,7 +83,6 @@ const GoodsInput = ({WriteGoodsTitle}) => {
       contents,
       imageURL: uploadImgMutation.data.imageURL[0],
       wishLocation,
-      likeCount: 0,
       haveStock: true
       };
     addGmutation.mutate(newGoods);

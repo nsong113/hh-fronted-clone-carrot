@@ -7,11 +7,8 @@ import { UploadImg, addGoods, updateGoods } from '../../../apis/api/goods';
 import { useNavigate } from 'react-router-dom';
 
 
-const Modify = () => {
+const GoodsInput = () => {
   const navigate = useNavigate();
-  
-  const { data } = useQuery('ImgUrl', UploadImg);
-
 
   const [imgFile,setImgFile] = useState({
     image_file: "",
@@ -32,12 +29,16 @@ const Modify = () => {
 
   const updateMutation = useMutation(updateGoods,{
     onSuccess: () => {
-      alert('상품이 수정되었습니다.');
-      navigate(-1); // 이전 페이지로 이동
+      alert('상품이 추가되었습니다.');
+      navigate(-1);
     },
   });
 
-  const  uploadImgMutation = useMutation(UploadImg);
+  const  uploadImgMutation = useMutation(UploadImg,{
+    onSuccess: (data) => {
+      console.log('이미지 업로드 성공:', data);
+    },
+  });
 
   // 이미지 업로드
   const onChangeImg = async (e) => {
@@ -49,7 +50,9 @@ const Modify = () => {
 
       const uploadFile = e.target.files[0]
       formData.append('file',uploadFile)
-      uploadImgMutation.mutate(formData);
+      // 이미지 업로드 요청
+      await uploadImgMutation.mutateAsync(formData);
+      // uploadImgMutation.mutate(formData);
       
       const preview_URL = URL.createObjectURL(uploadFile);
       setImgFile(() => (
@@ -70,15 +73,16 @@ const Modify = () => {
     }
   }, [])
 
-  // 상품 추가 (완료버튼)
-  const onClickAddHandler = () => {
+  // 상품 수정 (완료버튼)
+  const onClickAddHandler = async () => {
+    // 이미지 업로드가 완료된 후에 data 가져오기
+    await uploadImgMutation.mutateAsync();
     const upGoods = {
       goodsTitle,
       price,
       contents,
-      imageUrl: data.imageURL[0],
+      imageURL: uploadImgMutation.data.imageURL[0],
       wishLocation,
-      likeCount: Math.floor(Math.random() * 11),
       haveStock: true
       };
       updateMutation.mutate(upGoods);
@@ -168,7 +172,7 @@ const Modify = () => {
   )
 }
 
-export default Modify
+export default GoodsInput
 
 
 // 인라인 스타일==========
