@@ -22,7 +22,6 @@ const SellList = () => {
                   <St.SellListAddressP>{i.wishLocation}</St.SellListAddressP>
                   <St.SellListFlexDiv>
                     <St.SellListLikeDiv>관심 {i.likeCount}</St.SellListLikeDiv>
-                    <St.SellListLikeDiv>채팅 3</St.SellListLikeDiv>
                   </St.SellListFlexDiv>
                 </div>
               </St.SellListItem>

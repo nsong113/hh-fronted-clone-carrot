@@ -12,20 +12,19 @@ const EachComment = ({ item, param }) => {
   //   setModifiedComment(!modifiedComment);
   // };
   // const onClickPutCommentHandler = () => {};
-
   //버튼을 눌렀을 때 true, false가 되는 토글
-  const [modifiedComment, setModifiedComment] = useState(false);
+  // const [modifiedComment, setModifiedComment] = useState(false);
 
   //코멘트 삭제
   const queryClient = useQueryClient();
+  const goodsId = parseInt(param.goodsId);
   const deleteCommentMutation = useMutation(deleteComments, {
     onSuccess: () => {
-      // queryClient.invalidateQueries()
+      queryClient.invalidateQueries('getComments');
     },
   });
 
   const onClickDeleteCommentHandler = commentId => {
-    const goodsId = parseInt(param.goodsId);
     console.log('goodsId', goodsId);
     console.log('commentId', commentId);
     deleteCommentMutation.mutate({ goodsId, commentId });
@@ -33,7 +32,7 @@ const EachComment = ({ item, param }) => {
 
   return (
     <St.CommentInfoDiv key={item.id}>
-      {!modifiedComment && <St.SellItemContentContentP>{item.content}</St.SellItemContentContentP>}
+      {<St.SellItemContentContentP>{item.content}</St.SellItemContentContentP>}
 
       {/* {!modifiedComment && editCommentId !== item.commentId && (
         <St.SellItemContentContentP>{item.comment}</St.SellItemContentContentP>

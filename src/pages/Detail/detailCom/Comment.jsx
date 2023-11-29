@@ -22,9 +22,9 @@ const Comment = () => {
 
   //코멘트 조회
   const { data, isSuccess } = useQuery('getComments', () => getComments(goodsId));
-  console.log(data);
+  // console.log(data); //goodsId에 대한 전체 데이터
   const currentComments = isSuccess && data?.commentList;
-  console.log('currentComments', currentComments);
+  // console.log('currentComments', currentComments);  //현재 id에 대한 comment 전체 -> map&item을 props로 넘김
 
   //코멘트 추가
   const queryClient = useQueryClient();
