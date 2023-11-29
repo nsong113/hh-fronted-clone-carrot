@@ -1,7 +1,8 @@
 import React from "react";
+import Modify from "./ModifyCom/Modify";
 
 const ModifyPage = () => {
-  return <div>ModifyPage</div>;
+  return <Modify />;
 };
 
 export default ModifyPage;
