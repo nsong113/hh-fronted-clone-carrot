@@ -4,6 +4,7 @@ import { getCookie } from './api/cookies';
 //axios 인스턴스를 만들어서 가공할 것
 export const instance = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
+  withCredentials: true,
 });
 
 instance.interceptors.request.use(

@@ -12,12 +12,11 @@ import { addLikeCount, deleteLikeCount } from '../../../apis/api/comments';
 const SellItem = () => {
   const navigate = useNavigate();
   const param = useParams();
-  // console.log('param', param.goodsId);
 
   //전체 goods 조회
   const { data: items } = useQuery('getGoods', getGoods);
 
-  //좋아요 토글
+  //좋아요 토글 - 렌더링용
   const [likeToggle, onClickLikeToggleHandler] = useMyPageToggle();
 
   //좋아요 post 요청
@@ -45,18 +44,11 @@ const SellItem = () => {
   // const prev = prevPage ?? items?[items?.length - 1]?.id;
   // const next = nextPage ?? items?[0]?.id;
 
-  //nullish coalescing operator
-  // const result = a ?? b;
-  //a에 값이 있다면 a를 할당 없다면 b를 할당
-
   //좌, 우 페이지네이션
   const onClickPrevNavigateHandler = () => {
     prevPage ? navigate(`/detail/${parseInt(prevPage)}`) : alert('더 이상 상품이 존재하지 않습니다.');
   };
   const onClickNextNavigateHandler = () => {
-    //전체 배열에서의 인덱스 ..
-    ///다음 배열 인덱스의 아이디...
-    //첫 페이지와 마지막 페이지 예외처리 :
     nextPage ? navigate(`/detail/${parseInt(nextPage)}`) : alert('더 이상 상품이 존재하지 않습니다. ');
   };
 
