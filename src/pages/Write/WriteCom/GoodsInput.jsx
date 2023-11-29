@@ -37,7 +37,7 @@ const GoodsInput = ({WriteGoodsTitle}) => {
 
   const  uploadImgMutation = useMutation(UploadImg,{
     onSuccess: () => {
-      alert('이미지가 등록되었습니다.');
+      // alert('이미지가 등록되었습니다.');
     },
   });
 
