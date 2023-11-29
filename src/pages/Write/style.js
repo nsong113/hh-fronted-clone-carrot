@@ -91,5 +91,6 @@ export const SelectionFlex = styled.div`
 export const InputSelectContainer = styled.div`
   height: 30px;
   background-color: transparent;
+  position: relative;
   outline: none;
 `

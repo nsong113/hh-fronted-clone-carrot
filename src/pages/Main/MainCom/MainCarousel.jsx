@@ -26,7 +26,6 @@ const MainCarousel = () => {
     },
   ];
 
-  const imgUrl = "../../../../hDaangnMainImg1.png";
   return (
     <St.CarouselContainerDiv>
       <Carousel 
@@ -42,6 +41,10 @@ const MainCarousel = () => {
         activeIndicatorIconButtonProps={{
           style: {
               color: 'var(--main-color)'
+          }}}
+          indicatorContainerProps={{
+            style: {
+                marginTop: '5px',
           }}}
       >
         {MainCarouselArr?.map(content => (

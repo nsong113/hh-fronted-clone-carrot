@@ -5,7 +5,6 @@ import useInputValue from '../../../hooks/useInputValue';
 import { useMutation } from 'react-query';
 import { UploadImg, addGoods } from '../../../apis/api/goods';
 import { useNavigate } from 'react-router-dom';
-// import { nanoid } from 'nanoid';
 
 
 const GoodsInput = ({WriteGoodsTitle}) => {
