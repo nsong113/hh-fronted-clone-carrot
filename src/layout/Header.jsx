@@ -3,8 +3,9 @@ import Navbar from './Navbar';
 import * as St from './style';
 import { useNavigate } from 'react-router';
 import useInputValue from '../hooks/useInputValue';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setInputValue } from '../redux/modules/search';
+import { removeCookie } from '../apis/api/cookies.js';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -27,7 +28,10 @@ const Header = () => {
   };
 
   //로그아웃
-  const onClickLogoutHandler = () => {};
+  const onClickLogoutHandler = () => {
+    removeCookie('authorization');
+    alert('로그아웃! ');
+  };
 
   return (
     <St.HeaderContainer>

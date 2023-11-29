@@ -9,3 +9,9 @@ export const setCookie = (name, value) => {
 export const getCookie = name => {
   return cookies.get(name);
 };
+
+export const removeCookie = name => {
+  if (cookies.get(name)) {
+    cookies.remove(name, { path: '/' });
+  }
+};
