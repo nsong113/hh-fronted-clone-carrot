@@ -6,16 +6,6 @@ import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router';
 
 const Login = () => {
-  const inputStyle = {
-    width: '300px',
-    height: '30px',
-    fontSize: '13px',
-    marginTop: '5px',
-    outline: 'none',
-    border: '1px solid #ddd',
-    borderRadius: '5px',
-  };
-
   const navigate = useNavigate();
   const [userName, onChangeUserNameHandler] = useInputValue();
   const [password, onChangePasswordHandler] = useInputValue();
@@ -93,3 +83,14 @@ const Login = () => {
 };
 
 export default Login;
+
+///스타일
+const inputStyle = {
+  width: '300px',
+  height: '30px',
+  fontSize: '13px',
+  marginTop: '5px',
+  outline: 'none',
+  border: '1px solid #ddd',
+  borderRadius: '5px',
+};

@@ -5,7 +5,6 @@ import useMyPageToggle from '../../../hooks/useMyPageToggle';
 import useInputValue from '../../../hooks/useInputValue';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { postComments, getComments } from '../../../apis/api/comments';
-import { getGoods } from '../../../apis/api/goods';
 import { useParams } from 'react-router';
 import EachComment from './EachComment';
 
@@ -23,7 +22,9 @@ const Comment = () => {
 
   //코멘트 조회
   const { data, isSuccess } = useQuery('getComments', () => getComments(goodsId));
-  const currentComments = isSuccess && data?.comments;
+  console.log(data);
+  const currentComments = isSuccess && data?.commentList;
+  console.log('currentComments', currentComments);
 
   //코멘트 추가
   const queryClient = useQueryClient();
@@ -73,8 +74,6 @@ const Comment = () => {
               <St.CommentDiv>
                 {isSuccess &&
                   currentComments?.map(item => {
-                    console.log(typeof item.commentId);
-                    console.log(typeof editCommentId);
                     return <EachComment item={item} param={param} />;
                   })}
               </St.CommentDiv>

@@ -5,6 +5,7 @@ import { instance } from '../config';
 const getComments = async goodsId => {
   try {
     const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/goods/${goodsId}`);
+    console.log('getComments 성공', res);
     return res.data;
   } catch (error) {
     console.log(`getComments error`, error);
@@ -13,16 +14,20 @@ const getComments = async goodsId => {
 
 // 댓글 추가
 const postComments = async ({ goodsId, content }) => {
-  //나중에 goodsId로 바꾸기
-  const response = await instance.post(`/goods/${goodsId}comment`, content);
-  return response.data;
+  try {
+    const res = await instance.post(`/goods/${goodsId}/comment`, content);
+    console.log('postComments 성공', res);
+    return res;
+  } catch (error) {
+    console.log('postComments error', error);
+  }
 };
 
 //댓글 삭제
 const deleteComments = async ({ goodsId, commentId }) => {
   try {
     const res = await instance.delete(`/goods/${goodsId}/comment/${commentId}`);
-
+    console.log('deleteComments 성공', res);
     return res;
   } catch (error) {
     console.log('deleteComments error', error);
@@ -33,7 +38,7 @@ const deleteComments = async ({ goodsId, commentId }) => {
 const addLikeCount = async goodsId => {
   try {
     const res = await instance.post(`/goods/${goodsId}/like`, null);
-    console.log(res);
+    console.log('addLikeCount 성공', res);
   } catch (error) {
     console.log('addLikeCount error', error);
   }
@@ -43,6 +48,7 @@ const addLikeCount = async goodsId => {
 const deleteLikeCount = async goodsId => {
   try {
     const res = await instance.delete(`/goods/${goodsId}/like`);
+    console.log('deleteLikeCount 성공', res);
   } catch (error) {
     console.log('deleteLikeCount error', error);
   }
