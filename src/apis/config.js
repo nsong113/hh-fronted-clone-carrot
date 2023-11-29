@@ -1,21 +1,37 @@
-import axios from "axios";
-import React from "react";
+import axios from 'axios';
+import { getCookie } from './api/cookies';
 
+//axios 인스턴스를 만들어서 가공할 것
 export const instance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: process.env.REACT_APP_SERVER_URL,
 });
 
-instance.interceptors.request
-  .use
+instance.interceptors.request.use(
+  //request 보내기 전 수행
+  function (config) {
+    console.log('인터셉터 request 요청 성공');
+    config.headers['authorization'] = getCookie('authorization');
+    console.log(config);
+    return config;
+  },
 
-  // request 보내기 전 수행
-  //   function (config) {
-  //     console.log("인터셉트 요청 성공!");
-  //     return config;
-  //   },
-  // request 오류 요청을 보내기 전 수행
-  //   function (error) {
-  //     console.log("인터셉트 요청 오류!");
-  //     return Promise.reject(error);
-  //   }
-  ();
+  //request 오류 요청을 보내기 전 수행
+  function (error) {
+    console.log('인터셉터 request 오류');
+    return Promise.reject(error);
+  },
+);
+
+instance.interceptors.response.use(
+  //응답을 내보내기 전 수행되는 함수
+  function (config) {
+    console.log('인터셉터 response 요청 성공');
+    return config;
+  },
+
+  //오류 응답을 내보내기 전 수행되는 함수
+  function (error) {
+    console.log('인터셉터 response 오류');
+    return Promise.reject(error);
+  },
+);
