@@ -3,15 +3,24 @@ import * as St from '../style';
 import { IoMdArrowDropdown } from "react-icons/io";
 import useInputValue from '../../../hooks/useInputValue';
 import { useMutation, useQuery } from 'react-query';
-import { UploadImg, addGoods, updateGoods } from '../../../apis/api/goods';
-import { useNavigate } from 'react-router-dom';
+import { UploadImg, updateGoods } from '../../../apis/api/goods';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getComments } from '../../../apis/api/comments';
 
 
-const Modify = () => {
+const GoodsInput = () => {
   const navigate = useNavigate();
-  
-  const { data } = useQuery('ImgUrl', UploadImg);
+  const params = useParams();
+  const goodsId = params.id;
+  const [detailedGoods,setDetailedGoods] = useState({});
 
+  const { data } = useQuery(["detailedGoods", goodsId],() => getComments(goodsId),{
+    onSuccess: (data) => {
+      console.log('굿즈 디테일 불러오기 data',data);
+      setDetailedGoods(data)
+      console.log('setDetailedGoods data',detailedGoods);
+    }
+  });
 
   const [imgFile,setImgFile] = useState({
     image_file: "",
@@ -23,6 +32,7 @@ const Modify = () => {
   const [si, onChangeSiHandler] = useInputValue();
   const [gu, onChangeGuHandler] = useInputValue();
   const [dong, onChangeDongHandler] = useInputValue();
+  
 
   // 주소 합치기
   const [wishLocation, setWishLocation] = useState('');
@@ -32,12 +42,16 @@ const Modify = () => {
 
   const updateMutation = useMutation(updateGoods,{
     onSuccess: () => {
-      alert('상품이 수정되었습니다.');
-      navigate(-1); // 이전 페이지로 이동
+      alert('상품이 추가되었습니다.');
+      navigate(-1);
     },
   });
 
-  const  uploadImgMutation = useMutation(UploadImg);
+  const  uploadImgMutation = useMutation(UploadImg,{
+    onSuccess: (data) => {
+      console.log('이미지 업로드 성공:', data);
+    },
+  });
 
   // 이미지 업로드
   const onChangeImg = async (e) => {
@@ -49,7 +63,9 @@ const Modify = () => {
 
       const uploadFile = e.target.files[0]
       formData.append('file',uploadFile)
-      uploadImgMutation.mutate(formData);
+      // 이미지 업로드 요청
+      await uploadImgMutation.mutateAsync(formData);
+      // uploadImgMutation.mutate(formData);
       
       const preview_URL = URL.createObjectURL(uploadFile);
       setImgFile(() => (
@@ -70,24 +86,25 @@ const Modify = () => {
     }
   }, [])
 
-  // 상품 추가 (완료버튼)
-  const onClickAddHandler = () => {
+  // 상품 수정 (완료버튼)
+  const onClickAddHandler = async () => {
+    // 이미지 업로드가 완료된 후에 data 가져오기
+    await uploadImgMutation.mutateAsync();
     const upGoods = {
       goodsTitle,
       price,
       contents,
-      imageUrl: data.imageURL[0],
+      imageURL: uploadImgMutation.data.imageURL[0],
       wishLocation,
-      likeCount: Math.floor(Math.random() * 11),
       haveStock: true
       };
       updateMutation.mutate(upGoods);
     console.log(upGoods);
     };
 
-  // 메인으로 (취소버튼)
+  // 이전으로 (취소버튼)
   const onClickCancelHandler = () => {
-    navigate('/');
+    navigate(-1);
   };
 
   return (
@@ -110,7 +127,7 @@ const Modify = () => {
         />
       </form>
 
-      <St.InputGoodsTitle placeholder='상품명' value={goodsTitle} onChange={onChangeGoodsTitleHandler}/>
+      <St.InputGoodsTitle placeholder='상품명' value={detailedGoods.goodsTitle} onChange={onChangeGoodsTitleHandler}/>
       <St.InputGoodsPrice placeholder='가격' 
         value={price} onChange={onChangePriceHandler}
         type="text" onInput={(e) => { // 숫자가 아닌 문자 제거
@@ -168,7 +185,7 @@ const Modify = () => {
   )
 }
 
-export default Modify
+export default GoodsInput
 
 
 // 인라인 스타일==========

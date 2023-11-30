@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import * as St from '../style';
 import { IoMdArrowDropdown } from "react-icons/io";
 import useInputValue from '../../../hooks/useInputValue';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { UploadImg, addGoods } from '../../../apis/api/goods';
 import { useNavigate } from 'react-router-dom';
 
@@ -57,7 +57,7 @@ const GoodsInput = ({WriteGoodsTitle}) => {
       const preview_URL = URL.createObjectURL(uploadFile);
       setImgFile(() => (
         {
-          image_file: e.target.files[0],
+          image_file: "",
           preview_URL: preview_URL
         }
       ))
@@ -83,11 +83,11 @@ const GoodsInput = ({WriteGoodsTitle}) => {
       contents,
       imageURL: uploadImgMutation.data.imageURL[0],
       wishLocation,
-      likeCount: 0,
       haveStock: true
       };
     addGmutation.mutate(newGoods);
     console.log(newGoods);
+    console.log(uploadImgMutation.data.imageURL[0]);
     };
 
   // 메인으로 (취소버튼)
