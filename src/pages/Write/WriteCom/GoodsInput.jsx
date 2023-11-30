@@ -53,6 +53,7 @@ const GoodsInput = ({WriteGoodsTitle}) => {
       // 이미지 업로드 요청
       await uploadImgMutation.mutateAsync(formData);
       // uploadImgMutation.mutate(formData);
+      // 리턴값없음
       
       const preview_URL = URL.createObjectURL(uploadFile);
       setImgFile(() => (

@@ -60,7 +60,7 @@ const SellItem = () => {
 
   //수정 버튼 눌렀을 때 수정 페이지로 이동
   const onClickGotoEditPageHandler = () => {
-    navigate('/modify');
+    navigate(`/modify/${param.goodsId}`);
   };
 
   return (

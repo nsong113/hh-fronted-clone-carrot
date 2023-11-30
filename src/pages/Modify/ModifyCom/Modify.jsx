@@ -136,12 +136,12 @@ const GoodsInput = () => {
         />
       </form>
 
-      <St.InputGoodsTitle placeholder='상품명' value={detailedGoods.goodsTitle} onChange={onChangeTitleHandler}/>
+      <St.InputGoodsTitle placeholder='상품명' value={detailedGoods.goodsTitle|| ''} onChange={onChangeTitleHandler}/>
       <St.InputGoodsPrice placeholder='가격' 
-        value={detailedGoods.price} onChange={onChangePriceHandler}
+        value={detailedGoods.price|| ''} onChange={onChangePriceHandler}
         type="text" onInput={(e) => { // 숫자가 아닌 문자 제거
         e.target.value = e.target.value.replace(/[^\d]/g, '');}}/>
-      <St.InputGoodsContents  value={detailedGoods.contents} onChange={onChangeContentsHandler}
+      <St.InputGoodsContents  value={detailedGoods.contents|| ''} onChange={onChangeContentsHandler}
         placeholder='상품 설명을 입력해주세요. 
         구매 시기, 모델명, 제품의 상태 (사용감, 하자 유무 등) 
         * SNS계정, 전화번호 등 개인정보는 입력하지 않도록 주의해주세요.

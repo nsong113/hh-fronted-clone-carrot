@@ -21,7 +21,11 @@ const addGoods = async newGoods => {
 // 이미지 업로드
 const UploadImg = async formData => {
   try {
-  const res = await instance.post(`/v1/upload`, formData);
+  const res = await instance.post(`/v1/upload`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    }, // 이렇게 해야 정상적으로 들어옴
+  });
   console.log('이미지 업로드 res', res);
   alert('이미지가 등록되었습니다.');
   return res.data;
