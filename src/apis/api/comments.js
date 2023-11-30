@@ -45,9 +45,9 @@ const addLikeCount = async goodsId => {
 };
 
 //좋아요 삭제
-const deleteLikeCount = async goodsId => {
+const deleteLikeCount = async ({ goodsId, likeId }) => {
   try {
-    const res = await instance.delete(`/goods/${goodsId}/like`);
+    const res = await instance.delete(`/goods/${goodsId}/like/${likeId}`);
     console.log('deleteLikeCount 성공', res);
   } catch (error) {
     console.log('deleteLikeCount error', error);
