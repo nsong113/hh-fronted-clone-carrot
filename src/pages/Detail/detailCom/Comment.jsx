@@ -74,7 +74,7 @@ const Comment = () => {
               <St.CommentDiv>
                 {isSuccess &&
                   currentComments?.map(item => {
-                    return <EachComment item={item} param={param} />;
+                    return <EachComment key={item.id} item={item} param={param} />;
                   })}
               </St.CommentDiv>
 
