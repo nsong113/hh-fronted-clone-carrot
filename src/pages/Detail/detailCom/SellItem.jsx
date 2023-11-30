@@ -68,7 +68,7 @@ const SellItem = () => {
       <St.SellItemArrowFlex>
         <IoIosArrowBack style={arrowStyle} onClick={onClickPrevNavigateHandler} />
         <St.SellItemLikeBtn>
-          {likeToggle && (
+          {!likeToggle && (
             <FcLikePlaceholder
               style={likeStyle}
               onClick={() => {
@@ -78,7 +78,7 @@ const SellItem = () => {
             />
           )}
 
-          {!likeToggle && (
+          {likeToggle && (
             <FcLike
               style={likeStyle}
               onClick={() => {
