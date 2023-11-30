@@ -61,7 +61,6 @@ const loginPost = async loginUser => {
         path: '/',
       });
     }
-
     return res.status;
   } catch (error) {
     console.log('loginPost error', error);
