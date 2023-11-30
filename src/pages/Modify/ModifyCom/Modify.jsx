@@ -4,7 +4,8 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import useInputValue from '../../../hooks/useInputValue';
 import { useMutation, useQuery } from 'react-query';
 import { UploadImg, addGoods, updateGoods } from '../../../apis/api/goods';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getComments } from '../../../apis/api/comments';
 
 
 const GoodsInput = () => {
