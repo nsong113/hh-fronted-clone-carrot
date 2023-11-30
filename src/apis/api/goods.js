@@ -2,7 +2,7 @@ import axios from 'axios';
 // import config from './config';
 import { instance } from '../config';
 
-// 상품 조회 - ok
+// 상품 조회
 const getGoods = async () => {
   const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/goods`);
   return res.data;

@@ -3,9 +3,8 @@ import * as St from '../style';
 import { IoMdArrowDropdown } from "react-icons/io";
 import useInputValue from '../../../hooks/useInputValue';
 import { useMutation, useQuery } from 'react-query';
-import { UploadImg, updateGoods } from '../../../apis/api/goods';
-import { useNavigate, useParams } from 'react-router-dom';
-import { getComments } from '../../../apis/api/comments';
+import { UploadImg, addGoods, updateGoods } from '../../../apis/api/goods';
+import { useNavigate } from 'react-router-dom';
 
 
 const GoodsInput = () => {
@@ -111,9 +110,9 @@ const GoodsInput = () => {
     console.log(upGoods);
     };
 
-  // 이전으로 (취소버튼)
+  // 메인으로 (취소버튼)
   const onClickCancelHandler = () => {
-    navigate(-1);
+    navigate('/');
   };
 
   return (
