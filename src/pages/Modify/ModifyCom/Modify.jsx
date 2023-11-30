@@ -3,12 +3,24 @@ import * as St from '../style';
 import { IoMdArrowDropdown } from "react-icons/io";
 import useInputValue from '../../../hooks/useInputValue';
 import { useMutation, useQuery } from 'react-query';
-import { UploadImg, addGoods, updateGoods } from '../../../apis/api/goods';
-import { useNavigate } from 'react-router-dom';
+import { UploadImg, updateGoods } from '../../../apis/api/goods';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getComments } from '../../../apis/api/comments';
 
 
 const GoodsInput = () => {
   const navigate = useNavigate();
+  const params = useParams();
+  const goodsId = params.id;
+  const [detailedGoods,setDetailedGoods] = useState({});
+
+  const { data } = useQuery(["detailedGoods", goodsId],() => getComments(goodsId),{
+    onSuccess: (data) => {
+      console.log('굿즈 디테일 불러오기 data',data);
+      setDetailedGoods(data)
+      console.log('setDetailedGoods data',detailedGoods);
+    }
+  });
 
   const [imgFile,setImgFile] = useState({
     image_file: "",
@@ -20,6 +32,7 @@ const GoodsInput = () => {
   const [si, onChangeSiHandler] = useInputValue();
   const [gu, onChangeGuHandler] = useInputValue();
   const [dong, onChangeDongHandler] = useInputValue();
+  
 
   // 주소 합치기
   const [wishLocation, setWishLocation] = useState('');
@@ -89,9 +102,9 @@ const GoodsInput = () => {
     console.log(upGoods);
     };
 
-  // 메인으로 (취소버튼)
+  // 이전으로 (취소버튼)
   const onClickCancelHandler = () => {
-    navigate('/');
+    navigate(-1);
   };
 
   return (
@@ -114,7 +127,7 @@ const GoodsInput = () => {
         />
       </form>
 
-      <St.InputGoodsTitle placeholder='상품명' value={goodsTitle} onChange={onChangeGoodsTitleHandler}/>
+      <St.InputGoodsTitle placeholder='상품명' value={detailedGoods.goodsTitle} onChange={onChangeGoodsTitleHandler}/>
       <St.InputGoodsPrice placeholder='가격' 
         value={price} onChange={onChangePriceHandler}
         type="text" onInput={(e) => { // 숫자가 아닌 문자 제거

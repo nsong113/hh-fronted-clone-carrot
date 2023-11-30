@@ -57,7 +57,7 @@ const GoodsInput = ({WriteGoodsTitle}) => {
       const preview_URL = URL.createObjectURL(uploadFile);
       setImgFile(() => (
         {
-          image_file: e.target.files[0],
+          image_file: "",
           preview_URL: preview_URL
         }
       ))
@@ -87,6 +87,7 @@ const GoodsInput = ({WriteGoodsTitle}) => {
       };
     addGmutation.mutate(newGoods);
     console.log(newGoods);
+    console.log(uploadImgMutation.data.imageURL[0]);
     };
 
   // 메인으로 (취소버튼)

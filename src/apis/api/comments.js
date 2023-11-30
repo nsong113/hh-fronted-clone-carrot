@@ -5,10 +5,10 @@ import { instance } from '../config';
 const getComments = async goodsId => {
   try {
     const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/goods/${goodsId}`);
-    console.log('getComments 성공', res);
+    console.log('getComments (/상세정보글조회)성공', res);
     return res.data;
   } catch (error) {
-    console.log(`getComments error`, error);
+    console.log(`getComments (/상세정보글조회)error`, error);
   }
 };
 
