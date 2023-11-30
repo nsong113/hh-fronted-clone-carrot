@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200;300;400;500;600;700;800;900&family=Roboto:wght@300;400;500&display=swap');
+
+/* font-family: 'Roboto', sans-serif; */
+
+*{
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+:root {
+  --main-color: #FF6F0F;
+}
+
 .App {
   text-align: center;
 }
