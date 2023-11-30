@@ -17,7 +17,7 @@ const GoodsList = () => {
   if (isLoading) return <div>상품 목록 로딩중</div>;
   if (isError) return <div>상품 목록을 불러오는데 에러가 발생</div>;
 
-  // RTK에서 가져온 input 값 필터링하기
+  // RTK에서 가져온 input 값 필터링하기//
   const filtered = data?.filter(item => {
     return item.goodsTitle.includes(input);
   });
