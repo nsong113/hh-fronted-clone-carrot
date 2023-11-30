@@ -9,17 +9,38 @@ import { useNavigate } from 'react-router-dom';
 
 const GoodsInput = () => {
   const navigate = useNavigate();
+  const params = useParams();
+  const goodsId = params.id;
+  const [detailedGoods,setDetailedGoods] = useState({});
+
+  const { data } = useQuery(["detailedGoods", goodsId],() => getComments(goodsId),{
+    onSuccess: (data) => {
+      console.log('상품 디테일 불러오기 data',data);
+      setDetailedGoods(data)
+      console.log('setDetailedGoods data',detailedGoods);
+    }
+  });
 
   const [imgFile,setImgFile] = useState({
     image_file: "",
     preview_URL: "../default_uploadImg.png",
   });
-  const [goodsTitle, onChangeGoodsTitleHandler] = useInputValue();
-  const [price, onChangePriceHandler] = useInputValue();
-  const [contents, onChangeContentsHandler] = useInputValue();
+  const [goodsTitle, setGoodsTitle] = useState();
+  const [price, setPrice] = useState();
+  const [contents, setContents] = useState();
   const [si, onChangeSiHandler] = useInputValue();
   const [gu, onChangeGuHandler] = useInputValue();
   const [dong, onChangeDongHandler] = useInputValue();
+  
+  const onChangeTitleHandler = (e) => {
+    setDetailedGoods({ ...detailedGoods, goodsTitle: e.target.value });
+  };
+  const onChangePriceHandler = (e) => {
+    setDetailedGoods({ ...detailedGoods, price: e.target.value });
+  };
+  const onChangeContentsHandler = (e) => {
+    setDetailedGoods({ ...detailedGoods, contents: e.target.value });
+  };
 
   // 주소 합치기
   const [wishLocation, setWishLocation] = useState('');
@@ -114,12 +135,12 @@ const GoodsInput = () => {
         />
       </form>
 
-      <St.InputGoodsTitle placeholder='상품명' value={goodsTitle} onChange={onChangeGoodsTitleHandler}/>
+      <St.InputGoodsTitle placeholder='상품명' value={detailedGoods.goodsTitle} onChange={onChangeTitleHandler}/>
       <St.InputGoodsPrice placeholder='가격' 
-        value={price} onChange={onChangePriceHandler}
+        value={detailedGoods.price} onChange={onChangePriceHandler}
         type="text" onInput={(e) => { // 숫자가 아닌 문자 제거
         e.target.value = e.target.value.replace(/[^\d]/g, '');}}/>
-      <St.InputGoodsContents  value={contents} onChange={onChangeContentsHandler}
+      <St.InputGoodsContents  value={detailedGoods.contents} onChange={onChangeContentsHandler}
         placeholder='상품 설명을 입력해주세요. 
         구매 시기, 모델명, 제품의 상태 (사용감, 하자 유무 등) 
         * SNS계정, 전화번호 등 개인정보는 입력하지 않도록 주의해주세요.
