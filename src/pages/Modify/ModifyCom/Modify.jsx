@@ -3,7 +3,7 @@ import * as St from '../style';
 import { IoMdArrowDropdown } from "react-icons/io";
 import useInputValue from '../../../hooks/useInputValue';
 import { useMutation, useQuery } from 'react-query';
-import { UploadImg, addGoods, updateGoods } from '../../../apis/api/goods';
+import { UploadImg, updateGoods } from '../../../apis/api/goods';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getComments } from '../../../apis/api/comments';
 

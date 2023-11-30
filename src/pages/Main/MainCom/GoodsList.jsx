@@ -13,7 +13,7 @@ const GoodsList = () => {
   const input = useSelector(state => state.search.input);
 
   //전체 데이터 불러오기
-  const { isLoading, isError, data } = useQuery('Goods', getGoods);
+  const { isLoading, isError, data, isSuccess } = useQuery('Goods', getGoods);
   if (isLoading) return <div>상품 목록 로딩중</div>;
   if (isError) return <div>상품 목록을 불러오는데 에러가 발생</div>;
 
@@ -51,6 +51,7 @@ const GoodsList = () => {
             );
           })}
         {!input &&
+        isSuccess &&
           data?.map(item => {
             return (
               <St.GoodsBoxDiv key={item.id} onClick={() => DetailLinkHandler(item.id)}>
